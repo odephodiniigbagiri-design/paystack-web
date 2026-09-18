@@ -240,19 +240,7 @@
 <script>
 // ---------------------------------------------------------------
 const PAYSTACK_LINK = "https://paystack.shop/pay/w8i44yicsj"; // your real Paystack payment link
-// Replace your old static matching check with this Supabase verification:
-const { data, error } = await supabase
-  .from('payments')
-  .select('status')
-  .eq('reference', userEnteredCode.trim()) // Checks the code the student typed
-  .single();
-
-if (data && data.status === 'success') {
-  // 🎉 Unlock the lowerinvertebrates chapter!
-} else {
-  // ❌ Invalid passcode
-}
-
+const UNLOCK_CODE = "BIO14PASS"; // the code you give students after they pay
 // ---------------------------------------------------------------
 
 const CHAPTERS = [

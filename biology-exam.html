@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Prep — Biology &amp; Zoology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF9F4;
+    --surface: #FFFFFF;
+    --surface-alt: #F1EEE4;
+    --ink: #1C2321;
+    --ink-soft: #55605A;
+    --border: #E4DFD3;
+    --pine: #2F4B3C;
+    --pine-deep: #1F3329;
+    --amber: #B98A2F;
+    --amber-deep: #8F6A1F;
+    --brick: #8C4A3B;
+    --brick-bg: #F7E9E4;
+    --ok: #2F6B4F;
+    --ok-bg: #E7F1EA;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #14231C; --surface: #1B2D24; --surface-alt: #22362B;
+      --ink: #EDEFE9; --ink-soft: #A9B5AC; --border: #33473C;
+      --pine: #7FBE9C; --pine-deep: #A6D6BB; --amber: #E0AE55; --amber-deep: #F0C578;
+      --brick: #E1998A; --brick-bg: #33241F; --ok: #86C9A2; --ok-bg: #1E3327;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14231C; --surface: #1B2D24; --surface-alt: #22362B;
+    --ink: #EDEFE9; --ink-soft: #A9B5AC; --border: #33473C;
+    --pine: #7FBE9C; --pine-deep: #A6D6BB; --amber: #E0AE55; --amber-deep: #F0C578;
+    --brick: #E1998A; --brick-bg: #33241F; --ok: #86C9A2; --ok-bg: #1E3327;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.55; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .serif { font-family: 'Lora', Georgia, serif; }
+  .shell { max-width: 640px; margin: 0 auto; padding: 0 0 96px; }
+
+  header.top { padding: 24px 20px 14px; border-bottom: 1px solid var(--border); }
+  header.top .brand { font-size: 12px; letter-spacing: .02em; color: var(--ink-soft); margin: 0 0 10px; }
+  header.top .eyebrow { font-size: 13px; color: var(--ink-soft); margin: 0 0 4px; }
+  header.top h1 { font-size: 21px; font-weight: 600; margin: 0; color: var(--pine-deep); }
+  :root[data-theme="dark"] header.top h1, :root:not([data-theme="light"]) header.top h1 {
+    @media (prefers-color-scheme: dark) { color: var(--pine); }
+  }
+
+  .chapter-rail { display: flex; gap: 8px; overflow-x: auto; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+  .chapter-rail::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto; padding: 8px 14px; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--ink-soft); font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .chip.active { background: var(--pine); border-color: var(--pine); color: #fff; }
+  .chip .lock-dot { font-size: 11px; }
+
+  nav.tabs { position: sticky; top: 0; display: flex; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 10; }
+  nav.tabs button {
+    flex: 1; padding: 13px 6px; background: none; border: none; font-family: 'Inter', sans-serif;
+    font-size: 13.5px; font-weight: 500; color: var(--ink-soft); cursor: pointer; border-bottom: 2px solid transparent;
+  }
+  nav.tabs button.active { color: var(--pine-deep); border-bottom-color: var(--amber); }
+  :root[data-theme="dark"] nav.tabs button.active, :root:not([data-theme="light"]) nav.tabs button.active {
+    @media (prefers-color-scheme: dark) { color: var(--pine); }
+  }
+  nav.tabs button:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--amber); outline-offset: 2px;
+  }
+
+  main { padding: 22px 20px 0; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .subtabs { display: flex; gap: 6px; margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+  .subtab-btn {
+    padding: 7px 13px; border-radius: 18px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--ink-soft); font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer;
+  }
+  .subtab-btn.active { background: var(--pine); border-color: var(--pine); color: #fff; }
+  .subpanel { display: none; }
+  .subpanel.active { display: block; }
+  .qtag {
+    display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 12px;
+    background: var(--surface-alt); color: var(--ink-soft); margin-bottom: 10px;
+  }
+
+  .note-block { margin-bottom: 24px; }
+  .note-block h2 { font-size: 17px; color: var(--pine-deep); margin: 0 0 8px; }
+  :root[data-theme="dark"] .note-block h2, :root:not([data-theme="light"]) .note-block h2 {
+    @media (prefers-color-scheme: dark) { color: var(--pine); }
+  }
+  .note-block p { margin: 0 0 10px; font-size: 15px; }
+  .note-block p:last-child { margin-bottom: 0; }
+  .note-block ul, .note-block ol { margin: 0 0 10px; padding-left: 20px; font-size: 15px; }
+  .note-block li { margin-bottom: 4px; }
+  .correction {
+    border-left: 3px solid var(--amber); background: var(--surface-alt);
+    padding: 10px 12px; border-radius: 0 6px 6px 0; font-size: 14px; margin: 0 0 10px;
+  }
+  .correction strong { color: var(--amber-deep); }
+  :root[data-theme="dark"] .correction strong, :root:not([data-theme="light"]) .correction strong {
+    @media (prefers-color-scheme: dark) { color: var(--amber); }
+  }
+
+  table.note-table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: 13.5px; }
+  table.note-table th, table.note-table td {
+    border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top;
+  }
+  table.note-table th { background: var(--surface-alt); font-weight: 600; color: var(--pine-deep); }
+  :root[data-theme="dark"] table.note-table th, :root:not([data-theme="light"]) table.note-table th {
+    @media (prefers-color-scheme: dark) { color: var(--pine); }
+  }
+  .table-wrap { overflow-x: auto; margin-bottom: 4px; }
+
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--pine); }
+  .checklist-item.checked span { color: var(--ink-soft); text-decoration: line-through; }
+  .checklist-progress { font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; }
+
+  .empty-state { text-align: center; padding: 50px 20px; color: var(--ink-soft); }
+  .empty-state .icon { font-size: 26px; margin-bottom: 10px; }
+  .empty-state p { font-size: 14px; margin: 0; }
+
+  .progress-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
+  .progress-track { height: 4px; background: var(--surface-alt); border-radius: 2px; overflow: hidden; margin-bottom: 18px; }
+  .progress-fill { height: 100%; background: var(--amber); transition: width .25s ease; }
+
+  .flashcard {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px; min-height: 200px;
+    padding: 28px 24px; display: flex; align-items: center; justify-content: center; text-align: center;
+    cursor: pointer; user-select: none;
+  }
+  .flashcard .content { font-size: 17px; }
+  .flashcard.answer .content { color: var(--pine-deep); font-weight: 500; }
+  :root[data-theme="dark"] .flashcard.answer .content, :root:not([data-theme="light"]) .flashcard.answer .content {
+    @media (prefers-color-scheme: dark) { color: var(--pine); }
+  }
+  .flashcard .hint { display: block; margin-top: 14px; font-size: 12px; color: var(--ink-soft); }
+
+  .card-nav { display: flex; gap: 10px; margin-top: 16px; }
+  .card-nav button {
+    flex: 1; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+  .card-nav button:disabled { opacity: .4; cursor: default; }
+
+  .quiz-question { font-size: 16px; font-weight: 500; margin: 0 0 16px; }
+  .option {
+    display: block; width: 100%; text-align: left; padding: 13px 14px; margin-bottom: 10px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+    font-family: 'Inter', sans-serif; font-size: 14px; cursor: pointer;
+  }
+  .option.correct { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+  .option.wrong { background: var(--brick-bg); border-color: var(--brick); color: var(--brick); font-weight: 600; }
+  .option:disabled { cursor: default; }
+
+  .quiz-footer { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .quiz-score { font-size: 13px; color: var(--ink-soft); }
+  .next-btn {
+    padding: 10px 18px; border-radius: 8px; border: none; background: var(--pine); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .next-btn:disabled { opacity: .4; cursor: default; }
+
+  .lock-box { border: 1px solid var(--border); background: var(--surface-alt); border-radius: 10px; padding: 26px 22px; text-align: center; }
+  .lock-box .icon { font-size: 28px; margin-bottom: 8px; }
+  .lock-box h3 { font-size: 17px; margin: 0 0 6px; color: var(--pine-deep); }
+  :root[data-theme="dark"] .lock-box h3, :root:not([data-theme="light"]) .lock-box h3 {
+    @media (prefers-color-scheme: dark) { color: var(--pine); }
+  }
+  .lock-box p { font-size: 14px; color: var(--ink-soft); margin: 0 0 18px; }
+  .pay-btn {
+    display: inline-block; width: 100%; padding: 13px; border-radius: 8px; border: none; background: var(--amber);
+    color: #211705; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none;
+    cursor: pointer; margin-bottom: 14px;
+  }
+  .unlock-row { display: flex; gap: 8px; margin-top: 4px; }
+  .unlock-row input {
+    flex: 1; padding: 11px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px;
+  }
+  .unlock-row button {
+    padding: 11px 16px; border-radius: 8px; border: none; background: var(--pine); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .unlock-msg { font-size: 13px; margin-top: 10px; min-height: 16px; }
+  .unlock-msg.err { color: var(--brick); }
+  .unlock-msg.ok { color: var(--ok); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="top">
+    <p class="brand">Exam Prep</p>
+    <p class="eyebrow" id="chapter-eyebrow">Biology · Chapter 14</p>
+    <h1 id="chapter-title">Pseudocoelomates, Rotifera and Gastrotricha</h1>
+  </header>
+
+  <div class="chapter-rail" id="chapter-rail"></div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="notes">Notes</button>
+    <button class="tab-btn" data-tab="cards">Flashcards</button>
+    <button class="tab-btn" data-tab="quiz">Practice</button>
+  </nav>
+
+  <main>
+    <section id="panel-notes" class="panel active"></section>
+    <section id="panel-cards" class="panel">
+      <div id="cards-inner"></div>
+    </section>
+    <section id="panel-quiz" class="panel">
+      <nav class="subtabs">
+        <button class="subtab-btn active" data-subtab="pq-quiz">Quiz</button>
+        <button class="subtab-btn" data-subtab="pq-past">Past Questions</button>
+        <button class="subtab-btn" data-subtab="pq-chimene">Chimene MCQs</button>
+      </nav>
+      <div id="subpanel-pq-quiz" class="subpanel active"><div id="quiz-inner"></div></div>
+      <div id="subpanel-pq-past" class="subpanel"><div id="past-inner"></div></div>
+      <div id="subpanel-pq-chimene" class="subpanel"><div id="chimene-inner"></div></div>
+    </section>
+  </main>
+</div>
+
+<script>
+// ---------------------------------------------------------------
+const PAYSTACK_LINK = "https://paystack.shop/pay/w8i44yicsj"; // your real Paystack payment link
+// Replace your old static matching check with this Supabase verification:
+const { data, error } = await supabase
+  .from('payments')
+  .select('status')
+  .eq('reference', userEnteredCode.trim()) // Checks the code the student typed
+  .single();
+
+if (data && data.status === 'success') {
+  // 🎉 Unlock the lowerinvertebrates chapter!
+} else {
+  // ❌ Invalid passcode
+}
+
+// ---------------------------------------------------------------
+
+const CHAPTERS = [
+{
+  id: "CH14", code: "BIO", subject: "Biology", chapNum: "14", title: "Pseudocoelomates, Rotifera and Gastrotricha", free: true,
+  notes: [
+    {type:"p", heading:"Pseudocoelomates (Blastocoelomates)", paras:[
+      "Pseudocoelomates are animals with a pseudocoel, a body cavity between the body wall and the digestive tract. Unlike a true coelom, it is not completely lined by mesoderm or peritoneum. The pseudocoel develops from the embryonic blastocoel, contains fluid that suspends and cushions internal organs, and may act as a hydrostatic support system.",
+      "Pseudocoelomates have a complete digestive tract with a mouth and an anus. Most acoelomates lack this; an exception is Nemertea (ribbon worms).",
+      "Main pseudocoelomate groups (acronym RONG NAKED): Rotifera, Nematoda, Gastrotricha, Nematomorpha, Acanthocephala, Kinorhyncha, Entoprocta.",
+      "Entoprocta and Ectoprocta were once grouped under Polyzoa/Bryozoa (\u201cmoss animals\u201d). Ectoprocta have a true coelom, while Entoprocta are pseudocoelomates. They are aquatic invertebrates, commonly sedentary colonial organisms."]},
+    {type:"p", heading:"Phylum Rotifera", paras:[
+      "Rotifers are tiny, mostly transparent aquatic animals with a ciliated crown called the corona. The beating of the corona creates a rotating-wheel appearance, giving the name \u201crotifer\u201d (wheel animal).",
+      "About 15,000\u201320,000 species exist. Their transparent bodies may appear to take the colour of food in the digestive tract under a microscope. Few species are parasitic, though many are parasitized by fungi or microsporidians such as Bertramia.",
+      "Classes of Rotifera (acronym SBM): Seisonacta, Bdelloidea, Monogononta."]},
+    {type:"p", heading:"Seisonacta", paras:[
+      "Usually parasites or epizoic forms on crustaceans. Corona poorly developed, bodies elongated. Dioecious (separate males and females) with little sexual dimorphism. Examples: Philodina, Albertia, Cephalodella."]},
+    {type:"p", heading:"Bdelloidea", paras:[
+      "Retractable anterior end; may swim or creep. Males absent. Reproduce by obligate parthenogenesis (females produce offspring from unfertilized eggs)."]},
+    {type:"p", heading:"Monogononta", paras:[
+      "May be motile or sessile. Name refers to a single reproductive organ. Males generally smaller than females. Produce three egg types: Amictic eggs (develop into females without fertilization), Mictic eggs (unfertilized, may develop into males), Dormant eggs (fertilized, resistant coverings, survive harsh conditions). This pattern is called cyclic parthenogenesis."]},
+    {type:"p", heading:"Body structure of rotifers", paras:[
+      "1. Head: Bears the corona, aids feeding and movement. Mouth surrounded by a buccal field.",
+      "2. Trunk: Cuticle may thicken into a protective, immovable case called a lorica for support. Sensory antennae may occur dorsally near the front, or laterally/posteriorly.",
+      "3. Foot: In sessile forms, may have an adhesive disc for attachment. In swimming forms, may have toes and pedal glands.",
+      "The pharynx contains a muscular mastax with hard jaws called trophi. The mastax distinguishes rotifers from gastrotrichs. The brain lies dorsal to the mastax."]},
+    {type:"p", heading:"Phylum Gastrotricha", paras:[
+      "Gastrotrichs (\u201cstomach hairs\u201d) are small, flattened invertebrates about 65\u20135,000 micrometres long. They resemble rotifers but lack a corona and mastax. Bodies may have scales; they produce hard-shelled eggs.",
+      "They form part of the psammolittoral fauna \u2014 animals living in sandy regions around the edges of natural water bodies.",
+      "Marine gastrotrichs are mainly omnivorous; freshwater species commonly feed on bacteria. Scales and resistant eggs help them survive low-oxygen and harsh conditions.",
+      "Their nervous system includes a brain near the pharynx. In freshwater habitats, females are the most commonly encountered individuals."]}
+  ],
+  flashcards: [
+["What is a pseudocoel?","A body cavity between the body wall and digestive tract that is not completely lined by mesoderm."],
+["What is another name for pseudocoelomates?","Blastocoelomates."],
+["From what embryonic cavity does the pseudocoel develop?","The blastocoel."],
+["What is the major function of fluid in the pseudocoel?","It suspends and cushions internal organs and may provide hydrostatic support."],
+["What type of digestive tract do pseudocoelomates have?","A complete digestive tract with a mouth and anus."],
+["What acronym is used for the main pseudocoelomate groups?","RONG NAKED."],
+["List the groups in RONG NAKED.","Rotifera, Nematoda, Gastrotricha, Nematomorpha, Acanthocephala, Kinorhyncha, and Entoprocta."],
+["Which group has a true coelom: Entoprocta or Ectoprocta?","Ectoprocta."],
+["What were Entoprocta and Ectoprocta once collectively called?","Polyzoa or Bryozoa, also called moss animals."],
+["What are rotifers commonly called?","Wheel animals."],
+["Why are rotifers called wheel animals?","Their beating corona gives the appearance of a rotating wheel."],
+["What is the corona?","A ciliated crown used for feeding and movement in rotifers."],
+["Approximately how many species of rotifers exist?","About 15,000\u201320,000 species."],
+["What is the usual body appearance of rotifers?","They are mostly transparent."],
+["What are the three major classes of Rotifera?","Seisonacta, Bdelloidea, and Monogononta."],
+["What acronym helps remember the classes of Rotifera?","SBM."],
+["Where are Seisonactans commonly found?","On crustaceans, usually as epizoic forms."],
+["What does epizoic mean?","Living on the surface of another animal."],
+["How is the corona of Seisonactans developed?","It is poorly developed."],
+["What does dioecious mean?","Males and females occur as separate individuals."],
+["Do Bdelloid rotifers have males?","No."],
+["How do Bdelloid rotifers reproduce?","By obligate parthenogenesis."],
+["What is obligate parthenogenesis?","Reproduction in which offspring develop from unfertilized eggs."],
+["What types of movement occur in Bdelloidea?","Swimming and creeping."],
+["What does Monogononta mean?","Possessing a single reproductive organ."],
+["How do male Monogononts compare in size with females?","Males are generally smaller."],
+["What are the three types of eggs in Monogononta?","Amictic, mictic, and dormant eggs."],
+["What do amictic eggs develop into?","Females without fertilization."],
+["What may unfertilized mictic eggs develop into?","Males."],
+["What happens when mictic eggs are fertilized?","They form dormant eggs that survive harsh conditions."],
+["What is cyclic parthenogenesis?","A reproductive cycle involving parthenogenesis and fertilized dormant eggs."],
+["What are the three main body regions of a rotifer?","Head, trunk, and foot."],
+["What is a lorica?","A thickened, protective cuticle that provides support."],
+["What helps sessile rotifers attach to surfaces?","An adhesive disc on the foot."],
+["What is the mastax?","A muscular part of the pharynx in rotifers."],
+["What are trophi?","Hard jaws located inside the mastax."],
+["What is the key structure that distinguishes rotifers from gastrotrichs?","The mastax with trophi."],
+["Where is the brain located in rotifers?","Dorsal to the mastax."],
+["What does Gastrotricha mean?","Stomach hairs."],
+["What is the typical size range of gastrotrichs?","About 65\u20135,000 micrometres long."],
+["Which two structures do gastrotrichs lack that are present in rotifers?","The corona and mastax."],
+["What body covering structures may gastrotrichs possess?","Scales."],
+["What type of eggs do gastrotrichs produce?","Hard-shelled eggs."],
+["What do freshwater gastrotrichs commonly feed on?","Bacteria."],
+["Where is the brain located in gastrotrichs?","Near the pharynx."]
+  ],
+  mcqs: [
+["A pseudocoel is found between the:",["Ectoderm and endoderm","Body wall and digestive tract","Brain and pharynx","Mouth and anus"],1],
+["A pseudocoel is not completely lined by:",["Ectoderm","Endoderm","Mesoderm","Cuticle"],2],
+["The pseudocoel develops from the:",["Coelom","Blastocoel","Lorica","Mastax"],1],
+["The fluid in a pseudocoel helps to:",["Produce scales","Suspend and cushion organs","Form hard jaws","Create the corona"],1],
+["Pseudocoelomates have a:",["Incomplete digestive tract","Complete digestive tract","Digestive tract without a mouth","Digestive tract without an anus"],1],
+["A complete digestive tract has:",["A mouth only","An anus only","A mouth and anus","No opening"],2],
+["Which group is an exception among acoelomates with a complete digestive tract?",["Rotifera","Nemertea","Gastrotricha","Entoprocta"],1],
+["Which acronym is used to remember the pseudocoelomate groups?",["SBM","RONG NAKED","PAC","MASTAX"],1],
+["Which phylum is represented by \u201cR\u201d in RONG NAKED?",["Rotifera","Rhizopoda","Reptilia","Radiolaria"],0],
+["Which phylum is represented by \u201cG\u201d in RONG NAKED?",["Gastropoda","Gastrotricha","Gymnophiona","Gnathostomata"],1],
+["Which group in RONG NAKED is known for parasitic spiny-headed worms?",["Acanthocephala","Entoprocta","Rotifera","Kinorhyncha"],0],
+["Entoprocta and Ectoprocta were once grouped under:",["Cnidaria","Bryozoa/Polyzoa","Platyhelminthes","Mollusca"],1],
+["Why was Ectoprocta separated from Entoprocta?",["It lacks a digestive tract","It has a true coelom","It is terrestrial","It lacks a body cavity"],1],
+["Bryozoa are also known as:",["Wheel animals","Ribbon worms","Moss animals","Stomach hairs"],2],
+["Rotifers are commonly called:",["Moss animals","Wheel animals","Ribbon worms","Spiny-headed worms"],1],
+["The ciliated crown of a rotifer is called the:",["Lorica","Corona","Mastax","Trophi"],1],
+["The corona is mainly used for:",["Feeding and movement","Egg protection only","Attachment only","Gas exchange only"],0],
+["Rotifers appear to have a rotating wheel because of the beating of their:",["Scales","Trophi","Corona","Pedal glands"],2],
+["Approximately how many species of rotifers are known?",["150\u2013200","1,500\u20132,000","15,000\u201320,000","150,000\u2013200,000"],2],
+["Rotifers are usually:",["Opaque","Transparent","Shell-covered","Large and flattened"],1],
+["The three major classes of Rotifera are remembered by the acronym:",["RONG","SBM","PAC","MAF"],1],
+["Which of the following is NOT a class of Rotifera?",["Seisonacta","Bdelloidea","Monogononta","Gastrotricha"],3],
+["Seisonactans are commonly found:",["On crustaceans","Inside plants","On bird feathers","In desert soil"],0],
+["An organism that lives on the surface of another animal is described as:",["Dioecious","Epizoic","Sessile","Amictic"],1],
+["In Seisonacta, the corona is:",["Very large","Poorly developed","Absent","Used as a foot"],1],
+["Dioecious organisms have:",["Both sexes in one individual","Separate male and female individuals","No males","Only dormant eggs"],1],
+["Bdelloid rotifers reproduce mainly by:",["Binary fission","Sexual reproduction only","Obligate parthenogenesis","Budding"],2],
+["In Bdelloidea, males are:",["Larger than females","Smaller than females","Absent","More common than females"],2],
+["Obligate parthenogenesis means development from:",["Fertilized eggs only","Unfertilized eggs","Spores","Buds"],1],
+["Bdelloid rotifers may move by:",["Flying and gliding","Swimming and creeping","Jumping and burrowing","Running and climbing"],1],
+["The term Monogononta refers to:",["A single reproductive organ","A single foot","A single eye","A single corona"],0],
+["In Monogononta, males are generally:",["Larger than females","Smaller than females","Absent","Identical to females in size"],1],
+["Which of the following is NOT a type of Monogonont egg?",["Amictic egg","Mictic egg","Dormant egg","Lorica egg"],3],
+["Amictic eggs develop into:",["Males","Females without fertilization","Dormant larvae","Crustaceans"],1],
+["Unfertilized mictic eggs may develop into:",["Males","Females only","Scales","Trophi"],0],
+["Fertilized mictic eggs become:",["Corona","Dormant eggs","Lorica","Mastax"],1],
+["The ability to form dormant eggs that survive harsh conditions is part of:",["Binary fission","Cyclic parthenogenesis","Epizoic living","Sexual dimorphism"],1],
+["Which is NOT one of the three main regions of a rotifer's body?",["Head","Trunk","Foot","Thorax"],3],
+["The protective thickened cuticle of a rotifer is called the:",["Corona","Lorica","Mastax","Buccal field"],1],
+["In sessile rotifers, attachment is aided by the:",["Adhesive disc","Corona","Trophi","Scales"],0],
+["The muscular part of the rotifer pharynx is the:",["Lorica","Mastax","Corona","Pedal gland"],1],
+["The hard jaws inside the mastax are called:",["Trophi","Scales","Antennae","Loricae"],0],
+["In rotifers, the brain is located:",["Ventral to the foot","Dorsal to the mastax","Inside the lorica","Behind the anus"],1],
+["Gastrotricha means:",["Wheel animals","Moss animals","Stomach hairs","Spiny heads"],2],
+["Gastrotrichs lack which structures found in rotifers?",["Corona and mastax","Head and trunk","Mouth and anus","Brain and pharynx"],0],
+["The approximate size range of gastrotrichs is:",["65\u20135,000 micrometres","65\u20135,000 cm","1\u201310 m","10\u201320 mm"],0],
+["Gastrotrichs may possess:",["Scales and hard-shelled eggs","Wings and feathers","A lorica and corona","Shells with tentacles"],0],
+["Psammolittoral fauna live mainly in:",["Sandy regions around water edges","Deep ocean trenches only","Mountain forests","Dry deserts"],0],
+["Marine gastrotrichs are mainly:",["Herbivorous","Omnivorous","Parasitic","Photosynthetic"],1],
+["Freshwater gastrotrichs commonly feed on:",["Fish","Bacteria","Crustaceans","Plant roots"],1],
+["Gastrotrichs tolerate harsh conditions partly because they have:",["Wings and claws","Scales and hard-shelled eggs","A corona and mastax","A true coelom"],1],
+["The brain of a gastrotrich is located:",["Near the pharynx","In the foot","Inside the egg","Dorsal to the mastax"],0],
+["In freshwater gastrotrichs, the most commonly encountered sex is:",["Male","Female","Both equally","Neither sex"],1]
+  ],
+  pastQuestions: []
+},
+
+{
+  id: "Z07", code: "AEB", subject: "Zoology", chapNum: "7", title: "Metazoans, Mesozoa and Parazoa", free: false,
+  notes: [
+    {type:"p", heading:"Metazoa", paras:["Metazoa refers to multicellular animals."]},
+    {type:"p", heading:"Mesozoa", paras:[
+      "Mesozoans are microscopic, worm-like parasites traditionally grouped into two major groups (mnemonic: DIOR)."]},
+    {type:"list", heading:"The two Mesozoan groups", ordered:false, items:[
+      "Dicyemida: parasites of cephalopods, such as octopuses and squids.",
+      "Orthonectida: parasites of various marine invertebrates, including annelids and echinoderms."]},
+    {type:"list", heading:"General characteristics of Mesozoa", ordered:false, items:[
+      "Very small, simple body organization.",
+      "An outer layer of ciliated cells surrounds internal reproductive cells.",
+      "They depend on their hosts for survival and reproduction.",
+      "Their classification and evolutionary relationships have been debated."]},
+    {type:"p", heading:"Parazoa", paras:[
+      "Parazoa traditionally includes sponges, which have a simpler level of organization than most other animals."]},
+    {type:"list", heading:"Characteristics of sponges", ordered:false, items:[
+      "They lack true tissues and organs.",
+      "They possess specialized cells called choanocytes (collar cells), which generate water currents and trap food.",
+      "They are generally sessile filter feeders.",
+      "Most are marine, although freshwater species exist.",
+      "Many are hermaphroditic.",
+      "Sexual reproduction commonly involves cross-fertilization."]},
+    {type:"p", heading:"Important term", paras:[
+      "Phoresis: a relationship in which one organism uses another for transport without necessarily harming it."]}
+  ],
+  flashcards: [
+["What are Metazoa?","Multicellular animals whose bodies are made up of many cells."],
+["What are Mesozoa, and which two traditional groups are included in them?","Mesozoa are microscopic, parasitic organisms traditionally grouped into Dicyemida and Orthonectida."],
+["Which group of Mesozoa parasitizes cephalopods?","Dicyemida. They are commonly found in the kidneys of cephalopods such as octopuses and squids."],
+["What is the characteristic body organization of Orthonectida?","A simple body with an outer layer of ciliated cells surrounding internal reproductive cells."],
+["What is Parazoa, and what animal group is its main example?","A traditional grouping of simple animals lacking true tissues and organs. Sponges (Porifera) are its main example."],
+["What are choanocytes, and what is their function in sponges?","Choanocytes are flagellated collar cells that generate water currents and trap food particles."],
+["How do sponges commonly reproduce sexually?","Many sponges are hermaphroditic and reproduce through cross-fertilization, in which sperm from one individual fertilizes eggs of another."]
+], mcqs: [
+["Metazoa refers to:",["Unicellular animals","Multicellular animals","Microscopic parasites only","Animals without tissues"],1],
+["The two traditional groups of Mesozoa are:",["Dicyemida and Orthonectida","Cnidaria and Ctenophora","Hydrozoa and Anthozoa","Trematoda and Cestoda"],0],
+["Dicyemida are parasites of:",["Fish","Cephalopods","Frogs","Insects"],1],
+["Orthonectida may parasitize:",["Only mammals","Only plants","Marine invertebrates","Only freshwater fish"],2],
+["Which feature is characteristic of mesozoans in the notes?",["Large, segmented bodies","An outer layer of ciliated cells surrounding internal reproductive cells","A complete digestive tract","A true coelom"],1],
+["Parazoa traditionally includes:",["Sponges","Flatworms","Roundworms","Comb jellies"],0],
+["Which sponge cells generate water currents and trap food?",["Rhabdites","Choanocytes","Colloblasts","Microfilariae"],1],
+["Phoresis is a relationship in which one organism:",["Kills another for food","Uses another organism for transport","Lives inside another organism and always harms it","Produces light to attract prey"],1]
+], pastQuestions: []
+},
+
+{
+  id: "Z08", code: "AEB", subject: "Zoology", chapNum: "8", title: "Eumetazoa", free: false,
+  notes: [
+    {type:"p", heading:"Eumetazoa", paras:["Eumetazoans are animals with true tissues and greater cellular specialization."]},
+    {type:"table", heading:"Classification by symmetry (mnemonic: RABIT)", headers:["Group","Symmetry"], rows:[
+      ["Radiata","Radial symmetry"], ["Bilateria","Bilateral symmetry"]]},
+    {type:"p", heading:"", paras:[
+      "Radiata traditionally includes animals with radial symmetry, while Bilateria includes animals whose bodies can be divided into approximately equal right and left halves.",
+      "Most radiates are diploblastic, possessing two primary germ layers. Bilaterians are generally triploblastic, possessing three germ layers."]},
+    {type:"p", heading:"Cnidaria and related animals", paras:[
+      "Traditional introductory zoology notes often group coelenterates and related organisms under the heading of Radiata."]},
+    {type:"list", heading:"General characteristics of cnidarians", ordered:false, items:[
+      "Diploblastic, with an outer epidermis and inner gastrodermis.",
+      "Possess a gastrovascular cavity called the enteron.",
+      "The mouth usually serves as the only opening to the digestive cavity.",
+      "They have a gelatinous mesoglea between the tissue layers.",
+      "They exhibit extracellular digestion followed by intracellular digestion.",
+      "The planula is a common free-swimming larval stage."]},
+    {type:"p", heading:"", paras:[
+      "Polyp: sessile, cylindrical body form. Medusa: usually free-swimming, umbrella-shaped body form. Some cnidarians have both polyp and medusa stages, while others have only one."]},
+    {type:"list", heading:"Classes of Cnidaria (mnemonic: HAS)", ordered:false, items:[
+      "Hydrozoa \u2014 many have a dominant polyp stage; some form colonies, and many have a medusa stage. Examples: Hydra and Obelia.",
+      "Anthozoa \u2014 includes sea anemones and corals; only the polyp stage, no medusa stage.",
+      "Scyphozoa \u2014 the true jellyfish; the medusa is the dominant stage; many possess stinging cells."]},
+    {type:"table", heading:"Anthozoan subclasses", headers:["Subclass","Characteristics"], rows:[
+      ["Zoantharia","Commonly have numerous unbranched tentacles; includes sea anemones."],
+      ["Alcyonaria","Have eight pinnate tentacles; includes many soft corals."]]},
+    {type:"p", heading:"", paras:[
+      "Coral reefs are often called the rainforests of the sea because they support diverse marine communities.",
+      "Many reef-building corals have a symbiotic relationship with photosynthetic algae called zooxanthellae. The algae provide organic nutrients through photosynthesis, while the coral provides shelter and access to light."]},
+    {type:"correction", heading:"Important correction: comb jellies", text:
+      "Ctenophores, or comb jellies, are not cnidarians. They possess adhesive cells called colloblasts, which capture prey. Many species are bioluminescent, meaning they can produce light. They do not possess the stinging cells characteristic of cnidarians."}
+  ],
+  flashcards: [
+["What are Eumetazoa?","Animals with true tissues and specialized cells."],
+["What is the difference between Radiata and Bilateria?","Radiata traditionally refers to animals with radial symmetry, while Bilateria refers to animals with bilateral symmetry."],
+["What is the difference between diploblastic and triploblastic animals?","Diploblastic animals develop from two primary germ layers: ectoderm and endoderm. Triploblastic animals have three: ectoderm, mesoderm and endoderm."],
+["What is the gastrovascular cavity, and what is its function?","A digestive cavity that carries out digestion and distributes nutrients. In many simple animals, it has a single opening serving as the mouth."],
+["What is mesoglea?","A gelatinous layer between the epidermis and gastrodermis in cnidarians. Its thickness and cellular composition vary among groups."],
+["What is the difference between a polyp and a medusa?","A polyp is generally sessile and cylindrical, while a medusa is usually free-swimming and umbrella-shaped."],
+["What is a planula larva?","A typically ciliated, free-swimming larval stage of cnidarians that may settle and develop into a polyp."],
+["What are the three traditional classes of Cnidaria, and what does the mnemonic HAS represent?","Hydrozoa, Anthozoa and Scyphozoa."],
+["Which cnidarian class has only the polyp stage, with no medusa stage?","Anthozoa, which includes sea anemones and corals."],
+["What are colloblasts, and which animals possess them?","Adhesive cells used to capture prey, found in ctenophores (comb jellies). They are not stinging cells."],
+["What are zooxanthellae, and how do they benefit reef-building corals?","Symbiotic photosynthetic algae that provide organic nutrients to corals through photosynthesis. Corals provide them with shelter and access to light."]
+], mcqs: [
+["Eumetazoans are animals that possess:",["No specialized cells","True tissues","No body symmetry","A pseudocoelom only"],1],
+["Radiata are traditionally associated with:",["Bilateral symmetry","Radial symmetry","Asymmetry only","Segmentation"],1],
+["Bilaterians are generally:",["Diploblastic","Triploblastic","Unicellular","Without germ layers"],1],
+["The gastrovascular cavity of cnidarians is also called the:",["Haemocoel","Enteron","Blastocoel","Pseudocoel"],1],
+["The common free-swimming larval stage of cnidarians is the:",["Acanthor","Planula","Filariform larva","Rhabditiform larva"],1],
+["A sessile, cylindrical cnidarian body form is called a:",["Medusa","Polyp","Planula","Colloblast"],1],
+["Which cnidarian class includes sea anemones and corals and has only the polyp stage?",["Hydrozoa","Anthozoa","Scyphozoa","Ctenophora"],1],
+["Comb jellies capture prey using adhesive cells called:",["Choanocytes","Colloblasts","Cnidocytes","Rhabdites"],1]
+], pastQuestions: []
+},
+
+{
+  id: "Z09", code: "AEB", subject: "Zoology", chapNum: "9", title: "Acoelomates and body cavities", free: false,
+  notes: [
+    {type:"table", heading:"The three major body-cavity conditions", headers:["Type","Description"], rows:[
+      ["Acoelomate","No body cavity between the gut and body wall; the space is filled with tissue."],
+      ["Pseudocoelomate","A body cavity exists but is not completely lined by mesoderm-derived peritoneum."],
+      ["Coelomate","A true body cavity is completely lined by mesoderm-derived tissue."]]},
+    {type:"p", heading:"Formation of the body cavity", paras:[
+      "During embryonic development, the blastocoel is the initial cavity of the blastula. As gastrulation proceeds, cells move inward and the archenteron (primitive gut) forms.",
+      "In acoelomates, the space between the body wall and gut becomes filled with tissue. In pseudocoelomates, part of the original blastocoel persists as the body cavity. In coelomates, a true coelom develops within mesoderm.",
+      "The blastopore is the opening of the developing archenteron."]},
+    {type:"p", heading:"Haemocoel", paras:[
+      "In many arthropods, the main body cavity is a haemocoel, containing circulating haemolymph. It is associated with an open circulatory system and is not equivalent to a true coelom."]},
+    {type:"table", heading:"Examples by body-cavity type", headers:["Body-cavity type","Examples"], rows:[
+      ["Acoelomates","Platyhelminthes"],
+      ["Pseudocoelomates","Nematodes, rotifers"],
+      ["Coelomates","Annelids, molluscs, arthropods, echinoderms"]]},
+    {type:"correction", heading:"Note", text:
+      "These are traditional introductory classifications. Modern taxonomy recognizes more complex relationships among the groups."}
+  ],
+  flashcards: [
+["What is an acoelomate?","A triploblastic animal that lacks a body cavity between the digestive tract and body wall. The space is filled with tissue."],
+["What is a pseudocoelomate?","An animal with a fluid-filled body cavity that is not completely lined by mesoderm-derived tissue."],
+["What is a coelomate?","An animal with a true body cavity completely lined by mesoderm-derived tissue."],
+["What is the blastocoel?","The cavity within the early embryo at the blastula stage. It may persist in pseudocoelomates or be reduced during development."],
+["What is the archenteron, and what is the blastopore?","The archenteron is the primitive gut formed during gastrulation. The blastopore is its opening to the outside."],
+["What is a haemocoel?","A body cavity containing haemolymph in animals with an open circulatory system, such as most arthropods."],
+["Give one example each of an acoelomate, pseudocoelomate and coelomate.","Acoelomate: Platyhelminthes. Pseudocoelomate: Nematoda. Coelomate: Annelida."]
+], mcqs: [
+["An animal with no body cavity between the gut and body wall is:",["Acoelomate","Pseudocoelomate","Coelomate","Haemocoelomate"],0],
+["A pseudocoelom is not completely lined by:",["Ectoderm","Mesoderm-derived peritoneum","Endoderm","Cuticle"],1],
+["A true coelom is a body cavity:",["Filled entirely with solid tissue","Completely lined by mesoderm-derived tissue","Found only in nematodes","Identical to a haemocoel"],1],
+["The initial cavity of the blastula is the:",["Archenteron","Blastocoel","Enteron","Haemocoel"],1],
+["The primitive gut formed during gastrulation is the:",["Blastocoel","Archenteron","Pseudocoel","Haemocoel"],1],
+["The blastopore is the:",["Opening of the developing archenteron","Adult digestive opening of all animals","Mesoderm lining of the coelom","Fluid inside the haemocoel"],0],
+["Which group is listed in the notes as pseudocoelomate?",["Platyhelminthes","Nematodes","Annelids","Echinoderms"],1],
+["In many arthropods, the haemocoel contains:",["Microfilariae","Haemolymph","Mesoglea","Digestive enzymes only"],1]
+], pastQuestions: []
+},
+
+{
+  id: "Z10", code: "AEB", subject: "Zoology", chapNum: "10", title: "Platyhelminthes", free: false,
+  notes: [
+    {type:"p", heading:"General characteristics", paras:[
+      "Platyhelminthes are commonly called flatworms."]},
+    {type:"list", heading:"", ordered:false, items:[
+      "The body is dorsoventrally flattened.",
+      "They are bilaterally symmetrical and triploblastic.",
+      "They are acoelomates.",
+      "Many parasitic species possess attachment organs such as suckers or hooks.",
+      "Free-living species may use mucus to capture prey or move.",
+      "Many parasitic flatworms are hermaphroditic, but some, including Schistosoma, have separate sexes."]},
+    {type:"table", heading:"Major traditional classes (mnemonic: TCT)", headers:["Class","Common name","Example"], rows:[
+      ["Trematoda","Flukes","Fasciola hepatica"],
+      ["Cestoda","Tapeworms","Taenia"],
+      ["Turbellaria","Traditionally, free-living flatworms","Planaria"]]},
+    {type:"correction", heading:"Note", text:"Turbellaria is a traditional group rather than a modern natural taxonomic class."},
+    {type:"p", heading:"Turbellaria \u2014 Planaria", paras:[]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "Most are free-living aquatic flatworms.",
+      "Many are nocturnal.",
+      "They glide using cilia and mucus.",
+      "They possess a muscular pharynx that can extend through the mouth during feeding.",
+      "Their bodies contain rhabdites, small rod-like structures associated with mucus production or defence.",
+      "They have a branched digestive cavity with a single opening.",
+      "Planaria are not normally parasitic, although they may become nuisances in aquatic environments."]},
+    {type:"p", heading:"Trematoda \u2014 Flukes", paras:[
+      "Trematodes are parasitic flatworms that generally possess suckers for attachment. Traditional orders include Aspidogastrea, Monogenea and Digenea."]},
+    {type:"list", heading:"Monogenea", ordered:false, items:[
+      "Usually have a direct life cycle involving one host.",
+      "Commonly parasitize fish and amphibians.",
+      "Possess a posterior attachment organ called an opisthaptor.",
+      "Some species infect the gills of fish.",
+      "Example: Polystoma integerrimum, a parasite of frogs whose reproduction is synchronized with the host's reproductive cycle.",
+      "Example: Diclidophora merlangi, a parasite of fish gills."]},
+    {type:"list", heading:"Digenea", ordered:false, items:[
+      "Usually require two or more hosts to complete their life cycle.",
+      "Typically possess oral and ventral suckers; the ventral sucker is called the acetabulum.",
+      "Most are hermaphroditic, but Schistosoma species are dioecious."]},
+    {type:"list", heading:"Aspidogastrea", ordered:false, items:[
+      "A relatively small group of trematodes.",
+      "Possess a large attachment organ, often divided into suckers or alveoli.",
+      "Commonly parasitize molluscs and some vertebrates, including fish and turtles.",
+      "Generally have simpler life cycles than digeneans, often involving a single host."]},
+    {type:"p", heading:"Important trematode infections", paras:[
+      "Schistosomiasis \u2014 caused by blood flukes of the genus Schistosoma. Infection occurs when infective cercariae penetrate the skin in contaminated freshwater. S. mansoni: mainly intestinal and hepatic disease. S. japonicum: mainly intestinal and hepatic disease. S. haematobium: primarily urinary tract disease.",
+      "Fascioliasis \u2014 caused by Fasciola hepatica, the common liver fluke. It primarily affects the liver and bile ducts.",
+      "Paragonimiasis \u2014 caused by Paragonimus westermani and related lung flukes. Infection usually follows ingestion of inadequately cooked infected crustaceans."]},
+    {type:"correction", heading:"Important correction", text:
+      "Schistosoma mansoni and S. japonicum are not restricted to the large and small intestines respectively. Their adult worms live in blood vessels, and disease is associated with eggs deposited in tissues. S. haematobium is associated mainly with the urinary bladder and urinary tract, not simply the blood."}
+  ],
+  flashcards: [
+["What are the major characteristics of Platyhelminthes?","They are bilaterally symmetrical, triploblastic, dorsoventrally flattened and acoelomate animals."],
+["What does the mnemonic TCT represent in the traditional classification of flatworms?","Trematoda, Cestoda and Turbellaria."],
+["What are rhabdites in planarians?","Small rod-like structures associated with mucus production or defence."],
+["How does a planarian feed?","It extends its muscular pharynx through its mouth to take in food. Digestion occurs in its branched digestive cavity."],
+["What is the main difference between Monogenea and Digenea?","Monogeneans usually have a direct life cycle involving one host, while digeneans generally require two or more hosts."],
+["What is an opisthaptor?","A posterior attachment organ found in many monogeneans, often equipped with hooks, clamps or other attachment structures."],
+["What is the acetabulum in trematodes?","The ventral sucker, which helps the worm attach to its host."],
+["Which major trematode genus is dioecious, and what does dioecious mean?","Schistosoma. Dioecious means that male and female reproductive organs occur in separate individuals."],
+["What are the principal diseases caused by Schistosoma mansoni, S. japonicum and S. haematobium?","S. mansoni and S. japonicum mainly cause intestinal and hepatosplenic schistosomiasis. S. haematobium mainly causes urinary schistosomiasis."],
+["What causes fascioliasis and paragonimiasis?","Fascioliasis is caused by liver flukes of the genus Fasciola, especially F. hepatica. Paragonimiasis is caused by lung flukes of the genus Paragonimus."]
+], mcqs: [
+["Platyhelminthes are commonly called:",["Roundworms","Flatworms","Horsehair worms","Spiny-headed worms"],1],
+["Flatworms are generally:",["Triploblastic and acoelomate","Diploblastic and coelomate","Unicellular","Radially symmetrical"],0],
+["Which traditional class includes planarians?",["Cestoda","Trematoda","Turbellaria","Hydrozoa"],2],
+["Planaria move mainly by:",["Using a hooked proboscis","Gliding with cilia and mucus","Swimming with a medusa bell","Using jointed legs"],1],
+["The muscular feeding structure that can extend through the mouth of Planaria is the:",["Acetabulum","Pharynx","Opisthaptor","Proboscis"],1],
+["Monogeneans usually have a life cycle involving:",["One host","Three hosts","No host","Only a mosquito vector"],0],
+["The posterior attachment organ of many monogeneans is called the:",["Acetabulum","Opisthaptor","Enteron","Choanocyte"],1],
+["The ventral sucker of a digenean is called the:",["Rhabdite","Acetabulum","Colloblast","Acanthor"],1],
+["Which trematode genus has separate sexes (is dioecious)?",["Fasciola","Schistosoma","Paragonimus","All trematodes"],1],
+["Schistosomiasis is acquired when infective cercariae:",["Are inhaled from air","Penetrate the skin in contaminated freshwater","Are swallowed in undercooked meat","Enter through mosquito bites"],1],
+["Fasciola hepatica is commonly known as the:",["Lung fluke","Liver fluke","Blood fluke","Fish gill fluke"],1],
+["Paragonimiasis usually follows ingestion of inadequately cooked infected:",["Crustaceans","Eggs","Soil","Copepods"],0]
+], pastQuestions: []
+},
+
+{
+  id: "Z15", code: "AEB", subject: "Zoology", chapNum: "15", title: "Nematoda", free: false,
+  notes: [
+    {type:"list", heading:"15.1 General characteristics", ordered:false, items:[
+      "Cylindrical, elongated, unsegmented bodies, usually tapered at both ends.",
+      "Body covered by a tough, non-cellular cuticle.",
+      "Bilaterally symmetrical and triploblastic.",
+      "Possess a pseudocoelom, a fluid-filled body cavity not completely lined by mesoderm.",
+      "Most species have separate sexes (dioecious), with males and females showing sexual dimorphism.",
+      "Excretion occurs through longitudinal excretory canals or glandular structures, depending on the group.",
+      "Many species are parasites of humans, animals, or plants and are economically important because they cause disease."]},
+    {type:"table", heading:"15.2 Classification by excretory system", headers:["Group","Excretory structure"], rows:[
+      ["Secernentea","Tubular or canal-based excretory system"], ["Adenophorea","Glandular excretory system"]]},
+    {type:"correction", heading:"Note", text:"These are traditional classifications used in older zoology texts. Modern classifications use different group names."},
+    {type:"p", heading:"15.3 General life cycle", paras:[
+      "The typical nematode life cycle: Egg \u2192 Larval stages \u2192 Adult.",
+      "Nematodes usually undergo four moults as they develop through four juvenile stages (L1\u2013L4) before becoming adults. The exact duration varies by species and environmental conditions.",
+      "The infective stage also varies: some infective larvae enter the host directly through the skin or mouth; some nematodes infect humans through ingestion of eggs containing larvae; others require an intermediate host, such as a mosquito."]},
+    {type:"table", heading:"15.4 Modes of transmission", headers:["Type","Explanation"], rows:[
+      ["Active infection","The infective larva actively penetrates the host, usually through the skin."],
+      ["Passive infection","The host ingests infective eggs or larvae in food, water, or other materials."],
+      ["Vector-borne infection","A vector transmits the parasite to the host."]]},
+    {type:"list", heading:"15.5 Types of transmission by vectors", ordered:false, items:[
+      "Mechanical transmission: the vector carries the parasite without the parasite developing or multiplying inside it.",
+      "Biological transmission: the parasite develops, multiplies, or both within the vector.",
+      "Cyclodevelopmental transmission: the parasite develops within the vector but does not multiply.",
+      "Cyclopropagative transmission: the parasite both develops and multiplies within the vector."]},
+    {type:"p", heading:"15.6 Ascaris lumbricoides \u2014 Roundworm", paras:["Disease: Ascariasis."]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "Adult worms are large, cylindrical, and unsegmented.",
+      "The mouth has three well-developed lips, each bearing two papillae.",
+      "Males are smaller than females and have a curved posterior end with caudal papillae and two copulatory spicules.",
+      "A female can produce approximately 200,000\u2013240,000 eggs per day.",
+      "Eggs have thick, resistant shells and can survive in suitable environmental conditions for years."]},
+    {type:"list", heading:"Life cycle", ordered:true, items:[
+      "Humans ingest embryonated eggs in contaminated food, water, or soil.",
+      "Larvae hatch in the small intestine and penetrate the intestinal wall.",
+      "They travel through the hepatic portal circulation to the liver, then through the heart to the lungs.",
+      "Larvae enter the alveoli, move up the respiratory tract, and are swallowed.",
+      "They return to the small intestine, where they mature into adults."]},
+    {type:"p", heading:"", paras:["Infective stage: embryonated egg containing the second-stage larva (L2)."]},
+    {type:"correction", heading:"Important distinction", text:"Ascaris suum is primarily associated with pigs. Ascaris lumbricoides is the principal human roundworm."},
+    {type:"list", heading:"Other examples of nematode migration", ordered:false, items:[
+      "Ascaris suum: may undergo tracheal migration, similar to A. lumbricoides.",
+      "Toxocara canis: undergoes somatic migration in humans, with larvae travelling to tissues and not normally developing into adults.",
+      "Parascaris equorum: primarily a parasite of horses and undergoes tracheal migration."]},
+    {type:"p", heading:"15.7 Hookworm \u2014 Ancylostoma duodenale", paras:[
+      "Disease: Hookworm infection (ancylostomiasis). The name comes from Greek: ankylos means bent or hooked, while stoma means mouth."]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "Has a well-developed buccal capsule with teeth.",
+      "The anterior end is bent dorsally.",
+      "Adults attach to the small intestinal wall and feed on blood.",
+      "Males and females are separate.",
+      "Females possess two ovaries."]},
+    {type:"list", heading:"Life cycle", ordered:true, items:[
+      "Eggs are passed in faeces.",
+      "In warm, moist, oxygenated soil, eggs hatch into rhabditiform larvae (L1).",
+      "Larvae moult to L2 and then to the infective filariform larva (L3).",
+      "L3 larvae penetrate the skin, enter the circulation, and travel through the heart to the lungs.",
+      "They migrate up the trachea, are swallowed, and reach the small intestine.",
+      "They mature into adults and begin producing eggs."]},
+    {type:"correction", heading:"Important correction", text:"The infective stage is the filariform larva (L3) specifically \u2014 not simply any sheathed larval stage. The sheath helps protect the larva in the environment."},
+    {type:"p", heading:"Environmental conditions", paras:[
+      "Eggs and larvae develop best in warm, moist, aerated soil. Very low temperatures and unsuitable moisture conditions prevent development or reduce survival. Larval development is strongly influenced by temperature and environmental conditions."]},
+    {type:"p", heading:"Infection and migration", paras:[
+      "Infection may occur through the skin or by ingestion. Skin infection: larvae enter the blood, pass through the heart and lungs, and eventually reach the intestine. Oral infection: larvae may reach the intestine directly, although migration patterns vary by species. The adult worms generally mature in the small intestine within several weeks."]},
+    {type:"p", heading:"15.8 Strongyloides stercoralis", paras:[
+      "Disease: Strongyloidiasis. A widely distributed nematode, especially in warm and humid regions. This parasite has three important developmental pathways."]},
+    {type:"list", heading:"1. Free-living cycle (heterogonic cycle)", ordered:false, items:[
+      "Rhabditiform larvae develop into free-living adult males and females in suitable soil.",
+      "These adults reproduce sexually.",
+      "Their offspring may develop into infective filariform larvae."]},
+    {type:"list", heading:"2. Parasitic cycle (homogonic cycle)", ordered:false, items:[
+      "Infective filariform larvae penetrate the skin.",
+      "They migrate through the circulation to the lungs, then up the respiratory tract and are swallowed.",
+      "They reach the small intestine, where parasitic females live in the mucosa.",
+      "Eggs hatch into rhabditiform larvae, which are passed in faeces or develop into infective larvae."]},
+    {type:"p", heading:"3. Autoinfection", paras:[
+      "Some larvae become infective while still inside the host. They penetrate the intestinal mucosa or perianal skin and reinfect the same person. Autoinfection can cause persistent infection and, particularly in immunocompromised individuals, potentially life-threatening hyperinfection."]},
+    {type:"list", heading:"Clinical phases", ordered:false, items:[
+      "Cutaneous: itching and skin irritation, especially at the site of entry.",
+      "Pulmonary: cough and other respiratory symptoms during larval migration.",
+      "Intestinal: abdominal pain, diarrhoea, and intestinal inflammation."]},
+    {type:"p", heading:"", paras:["Severe infection may cause intestinal damage and allow bacteria to enter the bloodstream, leading to sepsis."]},
+    {type:"p", heading:"15.9 Trichuris trichiura \u2014 Whipworm", paras:["Disease: Trichuriasis."]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "Adult worms inhabit the caecum and adjacent large intestine.",
+      "The anterior end is thin, while the posterior end is thicker, giving the worm a whip-like appearance.",
+      "Eggs are barrel-shaped or lemon-shaped, with characteristic plugs at both ends.",
+      "The egg contains an unsegmented cell when passed in faeces.",
+      "It is a soil-transmitted helminth (geohelminth)."]},
+    {type:"p", heading:"", paras:["Infective stage: embryonated egg containing a larva. Humans become infected by ingesting embryonated eggs from contaminated soil, food, or water."]},
+    {type:"p", heading:"15.10 Trichinella spiralis", paras:[
+      "Disease: Trichinellosis. A parasitic nematode found in pigs and other mammals. Human infection usually occurs by eating raw or inadequately cooked meat containing encysted larvae. The adult worms develop in the small intestine. New larvae migrate through the body and become established in skeletal muscles."]},
+    {type:"list", heading:"Main stages of infection", ordered:true, items:[
+      "Ingestion of meat containing encysted larvae.",
+      "Release of larvae in the intestine and development into adults.",
+      "Female worms release larvae that penetrate the intestinal mucosa.",
+      "Larvae migrate through the circulation and enter skeletal muscles.",
+      "Larvae become encapsulated in muscle tissue."]},
+    {type:"correction", heading:"Important distinction", text:"Trichinella spiralis is not the human pinworm. The human pinworm is Enterobius vermicularis."}
+  ],
+  flashcards: [
+["What are the main characteristics of nematodes?","They are cylindrical, unsegmented, bilaterally symmetrical worms covered by a cuticle. They are triploblastic and possess a pseudocoelom."],
+["What is the difference between Secernentea and Adenophorea in traditional nematode classification?","Secernentea possess a canal-based excretory system, while Adenophorea are traditionally described as having glandular excretory structures."],
+["What is the infective stage of Ascaris lumbricoides, and how does it enter humans?","The embryonated egg containing the second-stage larva (L2). Humans become infected by ingesting contaminated food, water or soil."],
+["Describe the larval migration route of Ascaris lumbricoides.","Small intestine → liver via portal circulation → heart → lungs → trachea → swallowed → small intestine, where adults develop."],
+["What is the infective stage of hookworm, and how does infection usually occur?","The filariform third-stage larva (L3). It usually penetrates the skin, particularly when a person walks barefoot on contaminated soil. Oral infection can also occur with some hookworm species."],
+["What are the two major developmental pathways of Strongyloides stercoralis?","The free-living heterogonic cycle and the parasitic homogonic cycle. It can also undergo autoinfection within the same host."],
+["What is autoinfection in Strongyloides stercoralis, and why is it important?","It occurs when larvae become infective inside the host and reinfect the same person. It allows persistent infection and can lead to life-threatening hyperinfection, especially in immunocompromised individuals."],
+["What are the characteristic features of Trichuris trichiura eggs, and where do adult worms live?","The eggs are barrel-shaped with plugs at both ends. Adults inhabit the caecum and adjacent large intestine."],
+["How does Trichinella spiralis infect humans, and where do its larvae become established?","Humans acquire infection by eating inadequately cooked meat containing encysted larvae. The larvae eventually become established in skeletal muscles."]
+], mcqs: [
+["Nematodes have bodies that are typically:",["Flat and segmented","Cylindrical and unsegmented","Radially symmetrical","Divided into a head, thorax and abdomen"],1],
+["The body of a nematode is covered by a:",["Shell of calcium carbonate","Tough, non-cellular cuticle","Crown of ciliated tentacles","Mesoglea"],1],
+["Nematodes are generally classified as:",["Acoelomates","Pseudocoelomates","Coelomates","Diploblasts"],1],
+["In the traditional classification in the notes, Secernentea have a:",["Glandular excretory system","Tubular or canal-based excretory system","Complete absence of excretion","Water vascular system"],1],
+["The infective stage of Ascaris lumbricoides is an embryonated egg containing:",["L1","L2","L3","An adult worm"],1],
+["During Ascaris lumbricoides migration, larvae travel from the intestine to the lungs and then:",["Enter the skin","Move up the respiratory tract and are swallowed","Remain permanently in the liver","Enter a mosquito"],1],
+["The infective stage of hookworm described in the notes is the:",["Rhabditiform L1","Filariform L3","Embryonated egg","Adult female"],1],
+["Hookworm eggs hatch and develop best in soil that is:",["Cold, dry and oxygen-poor","Warm, moist and oxygenated","Frozen and waterlogged","Completely without moisture"],1],
+["Strongyloides stercoralis is notable for its ability to cause:",["Autoinfection","Elephantiasis only","A medusa stage","A true coelom"],0],
+["The free-living cycle of Strongyloides stercoralis includes:",["Free-living adult males and females in suitable soil","Adult worms living only in mosquitoes","No reproduction outside the host","A copepod intermediate host"],0],
+["The infective stage of Trichuris trichiura is an:",["Unembryonated egg","Embryonated egg containing a larva","Filariform L3","Encysted muscle larva"],1],
+["Adult Trichuris trichiura commonly inhabit the:",["Lymphatic vessels","Caecum and adjacent large intestine","Skeletal muscles","Lungs only"],1],
+["Human infection with Trichinella spiralis usually occurs through eating:",["Contaminated soil","Inadequately cooked meat containing encysted larvae","Water containing copepods","Food contaminated with embryonated eggs"],1],
+["Adult Trichinella spiralis develop in the:",["Small intestine","Lymphatic vessels","Skin","Mosquito"],0],
+["The human pinworm is:",["Trichinella spiralis","Enterobius vermicularis","Ascaris suum","Toxocara canis"],1]
+], pastQuestions: []
+},
+
+{
+  id: "Z16", code: "AEB", subject: "Zoology", chapNum: "16", title: "Filarial worms", free: false,
+  notes: [
+    {type:"list", heading:"16.1 General characteristics", ordered:false, items:[
+      "Filarial worms are slender, elongated nematodes that are usually tissue or blood parasites.",
+      "They have small mouths, generally without lips or a well-developed buccal capsule.",
+      "Their larval forms circulating in the blood or tissues are called microfilariae.",
+      "Adult worms may live in lymphatic vessels, subcutaneous tissues, or body cavities.",
+      "Many species require an arthropod vector to complete their life cycle."]},
+    {type:"table", heading:"16.2 Medically and veterinary important genera (mnemonic: MAN LOW BD)", headers:["Letters","Genus"], rows:[
+      ["MAN","Mansonella"], ["LOW","Loa loa"], ["O","Onchocerca"], ["W","Wuchereria"], ["B","Brugia"], ["D","Dracunculus"]]},
+    {type:"p", heading:"16.3 Periodicity of microfilariae", paras:[
+      "Periodicity refers to the variation in the number of microfilariae circulating in peripheral blood at different times of the day."]},
+    {type:"table", heading:"", headers:["Type","Example"], rows:[
+      ["Nocturnal periodicity","Wuchereria bancrofti"], ["Diurnal periodicity","Loa loa"], ["Non-periodic or aperiodic","Some Mansonella species"]]},
+    {type:"p", heading:"", paras:["Periodicity is important because it helps determine the appropriate time to collect blood samples for diagnosis."]},
+    {type:"p", heading:"16.4 Wuchereria bancrofti", paras:["Disease: Lymphatic filariasis."]},
+    {type:"list", heading:"Life cycle", ordered:true, items:[
+      "Adult worms live in human lymphatic vessels.",
+      "Microfilariae enter the bloodstream.",
+      "A mosquito ingests microfilariae during a blood meal.",
+      "Larvae develop into infective L3 inside the mosquito.",
+      "Infective L3 enters a new human host during mosquito feeding."]},
+    {type:"p", heading:"", paras:[
+      "Female worms are viviparous in the functional sense: they release live microfilariae rather than laying eggs outside the host. Microfilariae are sheathed and usually show nocturnal periodicity. Adult worms may survive for several years."]},
+    {type:"p", heading:"Pathology", paras:[
+      "Adult worms inhabit the lymphatic vessels and can cause inflammation and impaired lymph drainage. This may result in lymphatic obstruction, lymphoedema (abnormal accumulation of lymph fluid), and elephantiasis, characterized by severe swelling and thickening of affected tissues. The disease is called lymphatic filariasis."]},
+    {type:"p", heading:"16.5 Dracunculus medinensis \u2014 Guinea worm", paras:[
+      "Disease: Dracunculiasis. A long, thread-like nematode that infects humans and other mammals. The adult female emerges through the skin, usually of the lower limb. When the affected area is immersed in water, the female releases larvae."]},
+    {type:"list", heading:"Life cycle", ordered:true, items:[
+      "A person drinks water containing infected copepods (Cyclops or water fleas).",
+      "Larvae are released in the digestive tract and penetrate the intestinal wall.",
+      "They develop into adult worms in the tissues.",
+      "The gravid female migrates toward the skin.",
+      "The female emerges through a blister and releases larvae into water.",
+      "Copepods ingest the larvae, which develop into infective larvae."]},
+    {type:"p", heading:"", paras:["Infective stage: L3 larva inside the copepod. Mode of infection: drinking water containing infected copepods."]}
+  ],
+  flashcards: [
+["What is a microfilaria, and what does periodicity mean?","A microfilaria is the larval form of a filarial worm found in blood or tissues. Periodicity refers to changes in the number of microfilariae circulating in peripheral blood at different times of the day."],
+["Differentiate the periodicity of Wuchereria bancrofti and Loa loa.","Wuchereria bancrofti commonly shows nocturnal periodicity, while Loa loa commonly shows diurnal periodicity."],
+["How is Wuchereria bancrofti transmitted, and what disease does it cause?","It is transmitted by infected mosquitoes. It causes lymphatic filariasis, which can result in lymphoedema and elephantiasis."],
+["What is the infective stage of Dracunculus medinensis, and how do humans acquire it?","The third-stage larva (L3) inside an infected copepod. Humans acquire infection by drinking water containing these copepods."]
+], mcqs: [
+["The larval forms of filarial worms found in blood or tissues are called:",["Colloblasts","Microfilariae","Rhabdites","Acanthors"],1],
+["Adult filarial worms may live in:",["Lymphatic vessels and subcutaneous tissues","Only the stomach","Only the intestinal lumen","Only freshwater"],0],
+["In the mnemonic MAN LOW BD, the letter “W” represents:",["Wuchereria","Wormeria","Wolbachia","Wucherella"],0],
+["Nocturnal periodicity is associated in the notes with:",["Loa loa","Wuchereria bancrofti","Fasciola hepatica","Dracunculus medinensis"],1],
+["Diurnal periodicity is associated with:",["Loa loa","Wuchereria bancrofti","Trichuris trichiura","Ascaris lumbricoides"],0],
+["Periodicity is useful in diagnosis because it helps determine:",["The best time to collect blood samples","The age of the adult worm","The number of hosts in every life cycle","Whether the parasite has a coelom"],0],
+["Adult Wuchereria bancrofti inhabit the human:",["Skeletal muscles","Lymphatic vessels","Small intestine","Lungs only"],1],
+["Lymphatic obstruction caused by Wuchereria bancrofti may lead to:",["Elephantiasis","Ascariasis","Trichuriasis","Paragonimiasis"],0],
+["Humans acquire Dracunculus medinensis by drinking water containing infected:",["Mosquitoes","Copepods","Snails","Fish"],1],
+["The infective stage of Dracunculus medinensis is the:",["L1 larva in soil","L3 larva inside a copepod","Embryonated egg","Adult female in water"],1]
+], pastQuestions: []
+},
+
+{
+  id: "Z17", code: "AEB", subject: "Zoology", chapNum: "17", title: "Other worm-like invertebrates", free: false,
+  notes: [
+    {type:"p", heading:"17.1 Kinorhyncha", paras:[
+      "Kinorhynchs are tiny marine animals commonly called mud dragons. The name comes from Greek: kinein means to move, while rhynchos means snout or beak."]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "They are segmented, with the body divided into 13\u201314 rings called zonites.",
+      "They are microscopic, benthic animals that live in marine sediments.",
+      "The head bears an eversible or retractable proboscis used in feeding and movement.",
+      "The body has spines and cuticular plates.",
+      "They lack cilia on the body surface.",
+      "They feed on small organisms and organic material, including diatoms.",
+      "The sexes are separate, with paired reproductive organs.",
+      "The first larval stage has fewer body segments than the adult."]},
+    {type:"p", heading:"17.2 Nematomorpha \u2014 Horsehair worms", paras:["Also called Gordian worms."]},
+    {type:"list", heading:"", ordered:false, items:[
+      "Extremely long, slender worms.",
+      "Adults are free-living, usually in freshwater or moist environments.",
+      "Juveniles are parasitic in arthropods such as insects.",
+      "Adults often form tangled knots, giving rise to the name Gordian worm.",
+      "The body surface may bear small structures called areoles."]},
+    {type:"p", heading:"17.3 Acanthocephala \u2014 Spiny-headed worms", paras:[
+      "Acanthocephalans are endoparasitic worms characterized by a retractable, hooked proboscis."]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "All are parasitic.",
+      "They infect invertebrates and vertebrates.",
+      "They lack a digestive tract and absorb nutrients through the body surface.",
+      "Their body is covered by a syncytial epidermis.",
+      "The juvenile stage is called an acanthor.",
+      "Many species require an intermediate host, commonly an arthropod."]},
+    {type:"list", heading:"Important terms", ordered:false, items:[
+      "Polyxenous: a parasite that can use more than one host species in its life cycle.",
+      "Brain manipulation: some parasites alter host behaviour in ways that increase the chance of transmission to the definitive host."]},
+    {type:"table", heading:"Examples", headers:["Species","Important information"], rows:[
+      ["Macracanthorhynchus hirudinaceus","Parasite of pigs; beetles serve as intermediate hosts."],
+      ["Moniliformis moniliformis","A spiny-headed worm associated with rodents and occasionally humans."]]},
+    {type:"p", heading:"17.4 Entoprocta", paras:["Entoprocts are small aquatic animals that may be solitary or colonial."]},
+    {type:"list", heading:"Characteristics", ordered:false, items:[
+      "Most are marine; a few occur in freshwater.",
+      "They may be stalked or sessile (attached to a surface).",
+      "They possess a crown of ciliated tentacles used for filter feeding.",
+      "The mouth and anus are located within the tentacle crown.",
+      "Some species are hermaphroditic and may exhibit protandry, where sperm matures before eggs."]},
+    {type:"p", heading:"", paras:["Protandry: the production or maturation of male reproductive structures before female reproductive structures."]},
+    {type:"checklist", heading:"Revision checklist \u2014 Chapters 7\u201310, 15\u201317", items:[
+      "Distinguish acoelomates, pseudocoelomates and coelomates.",
+      "Recall the infective stages of Ascaris, hookworm and Trichuris.",
+      "Explain the free-living, parasitic and autoinfection cycles of Strongyloides.",
+      "Differentiate mechanical, cyclodevelopmental and cyclopropagative transmission.",
+      "Explain microfilarial periodicity and the life cycle of Wuchereria.",
+      "Distinguish Kinorhyncha, Nematomorpha, Acanthocephala and Entoprocta.",
+      "Recall the classes of Cnidaria and the differences between polyps and medusae.",
+      "Distinguish Monogenea from Digenea and identify the major trematode diseases."]}
+  ],
+  flashcards: [
+["What are the main characteristics of Kinorhyncha?","They are microscopic, segmented marine animals with a retractable proboscis, spiny cuticle and a body divided into approximately 13–14 zonites. They are benthic and lack body cilia."],
+["What distinguishes Nematomorpha, Acanthocephala and Entoprocta from one another?","Nematomorpha: horsehair worms; juveniles are parasitic in arthropods, while adults are generally free-living. Acanthocephala: spiny-headed endoparasites with a retractable hooked proboscis and no digestive tract. Entoprocta: tiny aquatic filter feeders with a crown of ciliated tentacles; the mouth and anus lie within the tentacle crown."]
+], mcqs: [
+["Kinorhyncha are commonly called:",["Mud dragons","Liver flukes","Roundworms","Comb jellies"],0],
+["Kinorhynchs are typically:",["Large terrestrial animals","Microscopic marine animals living in sediments","Freshwater parasites of humans","Free-swimming jellyfish"],1],
+["The head of a kinorhynch bears a:",["Medusa bell","Retractable proboscis","Crown of ciliated tentacles","Three-lipped mouth"],1],
+["Nematomorpha are also known as:",["Spiny-headed worms","Gordian or horsehair worms","Mud dragons","Flatworms"],1],
+["Juvenile Nematomorpha are generally:",["Parasitic in arthropods","Free-living in the human intestine","Parasites of cephalopods","Attached to coral reefs"],0],
+["Acanthocephalans are characterized by a:",["Retractable hooked proboscis","Crown of ciliated tentacles","Medusa stage","Branched digestive cavity"],0],
+["Acanthocephalans obtain nutrients by:",["Using a complete digestive tract","Absorbing nutrients through the body surface","Photosynthesis","Filtering water with choanocytes"],1],
+["The juvenile stage of an acanthocephalan is called the:",["Planula","Acanthor","Filariform larva","Microfilaria"],1],
+["In Entoprocta, the mouth and anus are located:",["At opposite ends of the body","Within the tentacle crown","Inside a hooked proboscis","In a pseudocoelom"],1],
+["Protandry means that male reproductive structures:",["Mature before female reproductive structures","Mature after female reproductive structures","Are absent","Develop only in a second host"],0]
+], pastQuestions: []
+},
+
+{
+  id: "Z04", code: "AEB", subject: "Zoology", chapNum: "4", title: "Apicomplexa / Alveolata", free: false,
+  notes: [
+  {
+    "type": "p",
+    "heading": "4.1 General characteristics of Apicomplexa",
+    "paras": [
+      "Apicomplexans are mostly parasitic protists. Many possess an apical complex, a set of structures at one end of certain life stages that helps them enter host cells."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "They usually have one nucleus per cell.",
+      "A pellicle helps maintain cell shape.",
+      "They obtain nutrients largely by absorption.",
+      "Many show little or no obvious locomotion during certain stages.",
+      "They commonly have complex life cycles involving more than one host (heteroxenous).",
+      "Asexual multiplication may occur through schizogony or merogony, producing merozoites.",
+      "The parasite may have several distinct forms during its life cycle (polymorphism)."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "The apical complex is not present in every stage of every apicomplexan. In Plasmodium, sporozoites and merozoites are important invasive stages."
+  },
+  {
+    "type": "p",
+    "heading": "4.2 MAMA",
+    "paras": [
+      "Your mnemonic MAMA refers to:"
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Myxozoa",
+      "Acetospora",
+      "Microsporea / Microsporidia",
+      "Apicomplexa"
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "MAMA is a course mnemonic, not a universally accepted modern taxonomic grouping. The statement that the infective form is “always a sporozoite” should not be applied to every group in the mnemonic."
+  },
+  {
+    "type": "p",
+    "heading": "4.3 Classification",
+    "paras": [
+      "The modern Apicomplexa mnemonic CAMP:"
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Conoidasida",
+      "Aconoidasida",
+      "Marosporida",
+      "Perkinsea"
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "Confirm the exact names and spelling of these groups against the classification used in your course."
+  },
+  {
+    "type": "p",
+    "heading": "4.4 Plasmodium and malaria — Hosts and infective stages",
+    "paras": []
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "The female Anopheles mosquito is the definitive host because sexual reproduction occurs in the mosquito.",
+      "Humans are the intermediate host, where asexual multiplication occurs.",
+      "The infective stage for humans is the sporozoite, injected during mosquito feeding.",
+      "Mosquitoes become infected when they ingest gametocytes from human blood.",
+      "Microgametocytes are male; macrogametocytes are female."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "Development in the mosquito",
+    "ordered": true,
+    "items": [
+      "Gametocytes develop into gametes.",
+      "Male and female gametes fuse to form a zygote.",
+      "The zygote becomes a motile ookinete.",
+      "The ookinete develops into an oocyst on the mosquito gut wall.",
+      "Sporogony in the oocyst produces sporozoites.",
+      "Sporozoites migrate to the mosquito's salivary glands and can infect another human."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "The sequence is zygote → ookinete → oocyst → sporozoites. “Oocytes” in the original note should be oocysts."
+  },
+  {
+    "type": "list",
+    "heading": "Human stages",
+    "ordered": false,
+    "items": [
+      "Sporozoites enter the body and reach the liver.",
+      "Liver-stage development produces merozoites, which enter the bloodstream and invade red blood cells.",
+      "In P. vivax and P. ovale, dormant liver forms called hypnozoites can cause relapses.",
+      "Some blood-stage parasites develop into gametocytes, which can be taken up by another mosquito."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "Species listed in your notes",
+    "ordered": false,
+    "items": [
+      "Plasmodium falciparum",
+      "P. malariae",
+      "P. ovale",
+      "P. vivax",
+      "P. knowlesi — a zoonotic species that infects humans and macaque monkeys."
+    ]
+  },
+  {
+    "type": "table",
+    "heading": "4.5 Malaria fever periodicity",
+    "headers": [
+      "Traditional term",
+      "Approximate interval"
+    ],
+    "rows": [
+      [
+        "Tertian",
+        "48 hours"
+      ],
+      [
+        "Quartan",
+        "72 hours"
+      ]
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "“Tertian” means every third day when counting the day of the first fever episode, so the interval is about 48 hours — not 72 hours. P. falciparum fever can be irregular or nearly daily, especially early in infection; “malignant malaria” is not simply a fever periodicity category."
+  },
+  {
+    "type": "p",
+    "heading": "4.6 Duffy antigen",
+    "paras": [
+      "The Duffy antigen receptor for chemokines (DARC) is a protein found on red blood cells."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "Avoid the broad statement that whole populations are simply “Duffy-positive” or “Duffy-negative,” or that Duffy status alone determines susceptibility to both P. vivax and P. knowlesi. Duffy negativity is strongly associated with reduced susceptibility to P. vivax, but malaria susceptibility is more complex and varies by parasite species and host factors."
+  },
+  {
+    "type": "list",
+    "heading": "4.7 Eimeria and Piroplasma",
+    "ordered": false,
+    "items": [
+      "Eimeria species cause coccidiosis in birds and other animals, including some ungulates.",
+      "Piroplasms include Babesia and Theileria.",
+      "They are transmitted by ticks, which are arachnids.",
+      "Babesia causes babesiosis, also called redwater fever in some animals.",
+      "Theileria causes theileriosis; some species cause East Coast fever."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "The liver-stage terms in your original notes — “cryptozoite” and “metacryptozoite” — are not used consistently across Plasmodium species and textbooks. For exam preparation, confirm your lecturer's preferred terminology before memorizing those labels."
+  }
+],
+  flashcards: [
+["What is the main function of the apical complex in many apicomplexans?","It helps certain life stages invade host cells."],
+["What is the function of the pellicle?","It helps maintain the cell's shape."],
+["What does heteroxenous mean?","A life cycle involving more than one host."],
+["What are schizogony and merogony associated with?","Asexual multiplication that produces merozoites."],
+["What does polymorphism mean in the context of apicomplexans?","The parasite has several distinct forms during its life cycle."],
+["What does the course mnemonic MAMA stand for?","Myxozoa, Acetospora, Microsporea/Microsporidia and Apicomplexa. It is a course mnemonic, not a universally accepted modern taxonomic group."],
+["What groups does the course mnemonic CAMP list?","Conoidasida, Aconoidasida, Marosporida and Perkinsea. Confirm the exact classification and spelling with your lecturer."],
+["Why is the female Anopheles mosquito the definitive host of Plasmodium?","Sexual reproduction occurs in the mosquito."],
+["What is the infective stage of Plasmodium for humans, and how does it enter the body?","The sporozoite, injected during mosquito feeding."],
+["What stage does a mosquito ingest from an infected human?","Gametocytes — microgametocytes are male and macrogametocytes are female."],
+["Recall the sequence of Plasmodium development in the mosquito.","Gametes → zygote → ookinete → oocyst → sporozoites. Sporozoites then migrate to the mosquito's salivary glands."],
+["What happens after Plasmodium sporozoites enter a human?","They reach the liver; liver-stage development produces merozoites, which enter the bloodstream and invade red blood cells."],
+["Which Plasmodium species can form hypnozoites, and why are they important?","P. vivax and P. ovale; dormant liver hypnozoites can cause relapses."],
+["Which Plasmodium species in the notes is zoonotic and also infects macaques?","P. knowlesi."],
+["What are the approximate intervals for tertian and quartan fever patterns?","Tertian: 48 hours. Quartan: 72 hours."],
+["What fever pattern may occur with P. falciparum?","Fever can be irregular or nearly daily, especially early in infection."],
+["What does DARC stand for, and what is its relevance in the notes?","Duffy antigen receptor for chemokines, a protein found on red blood cells. Duffy negativity is strongly associated with reduced susceptibility to P. vivax, but it does not determine susceptibility to every malaria species."],
+["Which diseases are associated with Eimeria, Babesia and Theileria?","Eimeria causes coccidiosis; Babesia causes babesiosis (also called redwater fever in some animals); Theileria causes theileriosis, including East Coast fever from some species."],
+["How are piroplasms transmitted?","By ticks, which are arachnids."],
+["Which malaria liver-stage terms in the notes should be confirmed with the lecturer?","“Cryptozoite” and “metacryptozoite,” because their use varies among textbooks."]
+], mcqs: [
+["The apical complex of many apicomplexans is mainly associated with:",["Photosynthesis","Host-cell invasion","Locomotion by cilia","Digestion of food"],1],
+["Which structure helps an apicomplexan maintain its cell shape?",["Pellicle","Rhynchocoel","Scolex","Polar tube"],0],
+["A parasite with a life cycle involving more than one host is described as:",["Monoxenous","Heteroxenous","Hermaphroditic","Epiphoretic"],1],
+["Schizogony or merogony in apicomplexans produces:",["Proglottids","Merozoites","Miracidia","Cercariae"],1],
+["Which statement about the apical complex is supported by the notes?",["It is present in every stage of every apicomplexan.","It is found only in adult worms.","It is associated with certain invasive stages.","It functions as a digestive tract."],2],
+["In the course mnemonic MAMA, the letter “M” represents:",["Myxozoa and Microsporea","Merogony and Miracidia","Mollusca and Myriapoda","Macronucleus and Micronucleus"],0],
+["Which group is not included in the MAMA mnemonic?",["Myxozoa","Acetospora","Microsporea","Ciliophora"],3],
+["Why should MAMA not be treated as a universally accepted modern taxonomic group?",["It contains only free-living organisms.","It is a course mnemonic for groups with complex classifications.","It refers only to fish parasites.","It describes stages of malaria fever."],1],
+["In Plasmodium, the definitive host is the:",["Human","Female Anopheles mosquito","Freshwater snail","Macaque monkey"],1],
+["Humans are considered the intermediate host of Plasmodium because:",["They produce the mosquito's eggs.","Asexual multiplication occurs in humans.","Sexual reproduction occurs only in humans.","They transmit the parasite through ticks."],1],
+["The stage of Plasmodium injected into humans by an infected mosquito is the:",["Gametocyte","Merozoite","Sporozoite","Ookinete"],2],
+["Mosquitoes become infected with Plasmodium when they ingest:",["Human gametocytes","Human liver cells","Human merozoites only","Hypnozoites from the skin"],0],
+["Which sequence correctly describes development in the mosquito?",["Ookinete → gametocyte → oocyst → zygote","Gametes → zygote → ookinete → oocyst","Oocyst → zygote → gametes → ookinete","Sporozoite → merozoite → gametocyte → oocyst"],1],
+["The male and female gametocytes of Plasmodium are called:",["Microgametocyte and macrogametocyte","Miracidium and cercaria","Sporocyst and redia","Oncosphere and cysticercus"],0],
+["Which stage develops from the zygote and is motile in the mosquito?",["Hypnozoite","Ookinete","Merozoite","Gametocyte"],1],
+["After entering a human, Plasmodium sporozoites first develop in the:",["Lungs","Liver","Kidneys","Intestine"],1],
+["Merozoites released from the liver go on to invade:",["Red blood cells","White blood cells only","Snail tissues","Mosquito salivary glands"],0],
+["Hypnozoites are associated with relapse in infections caused by:",["P. falciparum and P. malariae","P. vivax and P. ovale","P. knowlesi and P. falciparum","All Plasmodium species equally"],1],
+["Plasmodium knowlesi is described in the notes as:",["A fish parasite","A zoonotic species infecting humans and macaques","A parasite transmitted by freshwater snails","A cause of hydatid cysts"],1],
+["A tertian fever pattern refers to an interval of approximately:",["12 hours","24 hours","48 hours","72 hours"],2],
+["A quartan fever pattern refers to an interval of approximately:",["24 hours","36 hours","48 hours","72 hours"],3],
+["Which statement about P. falciparum fever is supported by the notes?",["It is always exactly every 72 hours.","It can be irregular or nearly daily, especially early in infection.","It is always absent.","It is the definition of quartan fever."],1],
+["DARC is another name for the:",["Duffy antigen receptor for chemokines","Digestive apical reproductive complex","Daughter sporocyst receptor","Definitive animal reproduction cell"],0],
+["Duffy negativity is strongly associated with reduced susceptibility to:",["P. vivax","P. falciparum","P. malariae","P. knowlesi only"],0],
+["Eimeria species cause:",["Coccidiosis","Whirling disease","Babesiosis","Paragonimiasis"],0],
+["Which pair consists of piroplasms?",["Babesia and Theileria","Eimeria and Plasmodium","Taenia and Echinococcus","Schistosoma and Paragonimus"],0],
+["Piroplasms are transmitted by:",["Mosquitoes","Ticks","Freshwater snails","Crabs"],1],
+["Redwater fever is another name used for disease caused by:",["Babesia","Theileria","Eimeria","Plasmodium vivax"],0],
+["East Coast fever is associated with:",["Theileria","Babesia","Eimeria","Myxobolus"],0],
+["Which term in the original notes should be confirmed with the lecturer because its use varies among textbooks?",["Sporozoite","Merozoite","Cryptozoite","Gametocyte"],2]
+], pastQuestions: []
+},
+
+{
+  id: "Z05", code: "AEB", subject: "Zoology", chapNum: "5", title: "Myxozoa, Microsporidia and Acetospora", free: false,
+  notes: [
+  {
+    "type": "p",
+    "heading": "5.1 Historical classification",
+    "paras": [
+      "These groups were historically placed among the sporozoans because they produce resistant spores. Their modern classification is more complex."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "5.2 Microsporidia",
+    "paras": [
+      "Microsporidia are obligate intracellular parasites that infect living cells and cause microsporidiosis."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Their resistant spores contain a coiled polar tube, which helps the parasite enter a host cell.",
+      "The polar structure includes a cap-like region.",
+      "They may infect humans, other animals, and invertebrates.",
+      "Some microsporidia are used in biological control because they can parasitize other organisms."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "Transmission and effects",
+    "ordered": false,
+    "items": [
+      "Infection may occur by ingesting food or water contaminated with spores.",
+      "Infection can cause enlargement of infected tissues (hypertrophy), although some infections may be asymptomatic.",
+      "Diagnosis may involve histological sections and wet-mount preparations."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "The notes attribute tissue swelling to “replication of spores (schizogony).” More precisely, microsporidia multiply inside host cells; the exact developmental terminology depends on the species. Do not assume that all microsporidia use the same sequence of stages."
+  },
+  {
+    "type": "list",
+    "heading": "Examples",
+    "ordered": false,
+    "items": [
+      "Enterocytozoon bieneusi — can cause chronic diarrhoea, particularly in immunocompromised people.",
+      "Encephalitozoon intestinalis — can cause intestinal infection.",
+      "Nosema apis — infects honeybees.",
+      "Nosema bombycis — infects silkworms."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "5.3 Myxozoa",
+    "paras": [
+      "Myxozoans are microscopic parasites that produce multicellular spores with polar capsules and extrusible polar filaments."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Spores may be released into water.",
+      "Infection commonly occurs through ingestion, although life cycles vary.",
+      "Some myxozoans use aquatic invertebrates as alternate hosts.",
+      "In certain life cycles, development in an annelid produces a triactinomyxon stage."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "Do not generalize the triactinomyxon stage to every myxozoan species; it is associated with particular life cycles."
+  },
+  {
+    "type": "list",
+    "heading": "Examples",
+    "ordered": false,
+    "items": [
+      "Myxobolus cerebralis causes whirling disease in salmonids.",
+      "Mitraspora, Wardia, Unicapsula, Myxidium, and Unicauda are listed as parasites of various aquatic vertebrates — check the spelling and host associations with your lecturer or textbook."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "5.4 Acetospora",
+    "paras": [
+      "According to your notes, Acetospora are spore-forming parasites whose spores lack a polar cap or filament."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "They are parasites of invertebrates, including molluscs, oysters, and annelids.",
+      "Infection is described as occurring by the oral route."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "Confirm the classification and examples under Acetospora, since this is a historical grouping and terminology may vary between textbooks."
+  }
+],
+  flashcards: [
+["What are microsporidia?","Obligate intracellular parasites that infect living cells and can cause microsporidiosis."],
+["What important structure is found inside a microsporidian spore?","A coiled polar tube, which helps the parasite enter a host cell."],
+["How may microsporidian infection be transmitted?","By ingesting food or water contaminated with spores."],
+["What does hypertrophy mean, and how is it relevant to microsporidia?","Enlargement of infected tissue; it may occur during infection, but some infections may be asymptomatic."],
+["Name two methods listed as potentially useful for diagnosing microsporidian infection.","Histological sections and wet-mount preparations."],
+["Match these microsporidia with their hosts or effects: E. bieneusi, E. intestinalis, N. apis, N. bombycis.","Enterocytozoon bieneusi can cause chronic diarrhoea, particularly in immunocompromised people; Encephalitozoon intestinalis can cause intestinal infection; Nosema apis infects honeybees; Nosema bombycis infects silkworms."],
+["What are the main spore features of Myxozoa?","Their microscopic parasites produce multicellular spores with polar capsules and extrusible polar filaments."],
+["What is the triactinomyxon stage, and should it be expected in every myxozoan?","It is a stage produced in the annelid host in certain myxozoan life cycles; it should not be generalized to every species."],
+["Which parasite causes whirling disease in salmonids?","Myxobolus cerebralis."],
+["How are Acetospora described in the notes, and what should be checked?","They are described as spore-forming invertebrate parasites whose spores lack a polar cap or filament, with infection described as oral. Their classification and examples should be confirmed because this is a historical grouping."],
+["Why should the older grouping of Microsporidia, Myxozoa and Acetospora be treated cautiously?","They were historically grouped among the sporozoans because they produce resistant spores, but their modern classification is more complex."]
+], mcqs: [
+["Microsporidia are best described as:",["Free-living multicellular animals","Obligate intracellular parasites","Photosynthetic algae","Blood flukes"],1],
+["The resistant spore of a microsporidian contains a:",["Scolex","Coiled polar tube","Rhynchocoel","Ring of denticles"],1],
+["The polar tube helps a microsporidian:",["Attach to a fish's gills only","Enter a host cell","Produce eggs in freshwater","Form a tapeworm scolex"],1],
+["Microsporidiosis is a disease associated with:",["Microsporidia","Myxozoa only","Cestodes","Nemertea"],0],
+["According to the notes, microsporidian infection may occur through:",["Ingestion of contaminated food or water","Tick bites only","Skin penetration by cercariae","Eating infected freshwater crabs only"],0],
+["Enlargement of infected tissue is called:",["Hypertrophy","Sporogony","Conjugation","Eversion"],0],
+["Which statement about microsporidian tissue swelling is most accurate according to the notes?",["Every infection causes swelling through schizogony.","Swelling may occur, but developmental terminology varies by species.","Swelling is caused only by adult worms.","Microsporidia never multiply inside host cells."],1],
+["Which method is listed as potentially useful in diagnosing microsporidian infection?",["Histological sections","X-ray diffraction only","Blood pressure measurement","Scolex examination"],0],
+["Which microsporidian is associated with chronic diarrhoea, particularly in immunocompromised people?",["Enterocytozoon bieneusi","Nosema apis","Nosema bombycis","Myxobolus cerebralis"],0],
+["Nosema apis infects:",["Silkworms","Honeybees","Salmonids","Humans only"],1],
+["Nosema bombycis infects:",["Silkworms","Honeybees","Cattle","Freshwater snails"],0],
+["Myxozoan spores are described as:",["Unicellular spores without any polar structures","Multicellular spores with polar capsules","Eggs containing six hooks","Larvae with an eversible proboscis"],1],
+["The polar capsules of myxozoans contain or are associated with:",["Extrusible polar filaments","Proglottids","Red blood cells","Daughter sporocysts"],0],
+["In certain myxozoan life cycles, development in an annelid produces a:",["Triactinomyxon stage","Cysticercus stage","Pilidium larva","Hypnozoite stage"],0],
+["Which statement about the triactinomyxon stage is correct?",["It occurs in every myxozoan species.","It is associated with particular myxozoan life cycles.","It is the infective stage of all tapeworms.","It is a stage of malaria in humans."],1],
+["Myxobolus cerebralis causes:",["Whirling disease in salmonids","Coccidiosis in birds","Urinary schistosomiasis","Microsporidiosis in humans"],0],
+["Myxozoans may use which organisms as alternate hosts?",["Aquatic invertebrates","Only mammals","Only birds","Only mosquitoes"],0],
+["According to the supplied notes, Acetospora are described as parasites whose spores lack:",["A nucleus","A polar cap or filament","A cell membrane","All resistant structures"],1],
+["Acetospora are described in the notes as parasites of:",["Invertebrates, including molluscs and annelids","Only humans","Only mammals","Only mosquitoes"],0],
+["Which route of infection is described for Acetospora in the notes?",["Oral route","Tick bite","Skin penetration by cercariae","Inhalation of sporozoites"],0],
+["Why should the classification of Acetospora be treated cautiously?",["It is a historical grouping and terminology may vary.","It is a class of mammals.","It has no known parasitic members.","It is identical to Cestoda."],0],
+["Which pair is correctly matched?",["Enterocytozoon bieneusi — honeybee parasite","Nosema apis — honeybee parasite","Nosema bombycis — salmonid parasite","Myxobolus cerebralis — silkworm parasite"],1],
+["Which statement best distinguishes microsporidian polar tubes from myxozoan polar capsules?",["Microsporidia have coiled polar tubes; myxozoans have polar capsules and polar filaments.","Both groups have scoleces.","Microsporidia have denticles; myxozoans have cilia.","Neither group has polar structures."],0],
+["Which of the following is not listed as a microsporidian example?",["Encephalitozoon intestinalis","Nosema apis","Nosema bombycis","Myxobolus cerebralis"],3],
+["Encephalitozoon intestinalis is associated with:",["Intestinal infection","Whirling disease","Lung fluke infection","Fish-eye cataracts"],0],
+["Which statement about microsporidia is supported by the notes?",["They infect only humans.","They may infect humans, other animals and invertebrates.","They are all free-living.","They are all transmitted by ticks."],1],
+["Some microsporidia are used in:",["Biological control","Producing hydatid cysts","Causing malaria fever periodicity","Forming tapeworm proglottids"],0],
+["Which group is associated with spores that may be released into water?",["Myxozoa","Cestoda only","Rhynchocoela only","Gnathostomulida only"],0],
+["Which statement should not be generalized to all Myxozoa?",["They are parasites.","Their spores have polar capsules.","Every species has a triactinomyxon stage.","Some have aquatic invertebrate alternate hosts."],2],
+["Which topic from the notes most clearly requires confirmation against the course textbook or lecturer?",["The exact classification and examples under Acetospora","The meaning of hypertrophy","The association of Myxobolus cerebralis with whirling disease","The presence of a polar tube in microsporidian spores"],0]
+], pastQuestions: []
+},
+
+{
+  id: "Z06", code: "AEB", subject: "Zoology", chapNum: "6", title: "Ciliophora and Rhizaria", free: false,
+  notes: [
+  {
+    "type": "p",
+    "heading": "6.1 Ciliophora",
+    "paras": [
+      "Ciliates are protists that use cilia for locomotion or moving food."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "They typically possess two types of nuclei: a macronucleus and one or more micronuclei.",
+      "They reproduce asexually, commonly by binary fission, and may exchange genetic material through sexual processes such as conjugation.",
+      "They may be free-living, epiphoretic, or commensal; some are parasitic.",
+      "The pathological effect of some ciliates may depend on parasite density."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "Examples",
+    "ordered": false,
+    "items": [
+      "Balantidium coli (also called Balantioides coli in some modern sources) is a ciliate that can parasitize humans.",
+      "Ichthyophthirius multifiliis and Cryptocaryon species are parasites of fish.",
+      "Trichodina species parasitize fish and have a ring of denticles used in attachment.",
+      "Tetrahymena species are adaptable ciliates; some are free-living, while others can be opportunistic parasites."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "6.2 Opalinata",
+    "paras": [
+      "Your notes describe opalinates as multinucleate organisms with cilia-like projections that can occur in fish, birds, and reptiles (PAR)."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "They are not generally treated as typical ciliates in modern classification.",
+      "Your notes state that Cavalier-Smith placed Opalinata in the phylum Bigyra in 1996."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "Confirm the exact classification and wording expected for Opalinata, since classifications of protists have changed over time."
+  },
+  {
+    "type": "p",
+    "heading": "6.3 Rhizaria",
+    "paras": [
+      "Rhizaria is a major eukaryotic supergroup. Your mnemonic is GRAF C2:"
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Gromia",
+      "Radiolaria",
+      "Acanthareans",
+      "Foraminifera",
+      "Chlorarachniophytes",
+      "Cercozoans"
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "",
+    "paras": [
+      "Example: Paulinella chromatophora, a cercozoan.",
+      "Rhizarians may have thin, thread-like (filose) or net-like (reticulose) pseudopodia."
+    ]
+  }
+],
+  flashcards: [
+["What are ciliates, and what do their cilia do?","Protists that use cilia for locomotion or moving food."],
+["What two types of nuclei do ciliates typically possess?","A macronucleus and one or more micronuclei."],
+["What are two reproductive processes associated with ciliates?","Asexual reproduction, commonly by binary fission, and sexual processes such as conjugation."],
+["What does conjugation allow ciliates to do?","Exchange genetic material."],
+["What kinds of associations or lifestyles may ciliates have?","They may be free-living, epiphoretic, commensal or parasitic."],
+["Which ciliate can parasitize humans, and what alternative name appears in the notes?","Balantidium coli, also called Balantioides coli in some modern sources."],
+["Name the fish-parasitizing ciliates listed in the notes.","Ichthyophthirius multifiliis, Cryptocaryon species and Trichodina species."],
+["What distinctive attachment structure is associated with Trichodina?","A ring of denticles."],
+["What is the important classification caution about Opalinata?","They are not generally treated as typical ciliates in modern classification. The notes state that Cavalier-Smith placed them in Bigyra in 1996; confirm the classification expected in your course."],
+["What does GRAF C2 stand for?","Gromia, Radiolaria, Acanthareans, Foraminifera, Chlorarachniophytes and Cercozoans."],
+["Which group does Paulinella chromatophora belong to?","Cercozoans."],
+["What are filose and reticulose pseudopodia?","Filose pseudopodia are thin and thread-like; reticulose pseudopodia are net-like."]
+], mcqs: [
+["Ciliates are protists that use which structures for movement or moving food?",["Cilia","Proglottids","Scoleces","Polar capsules"],0],
+["Ciliates typically possess:",["A macronucleus and one or more micronuclei","Only a scolex","A mother and daughter sporocyst","A rhynchocoel and proboscis"],0],
+["A common form of asexual reproduction in ciliates is:",["Binary fission","Sporogony","Schizogony","Budding of proglottids"],0],
+["Conjugation in ciliates is associated with:",["Exchange of genetic material","Production of cercariae","Formation of hydatid cysts","Tick transmission"],0],
+["Ciliates may be:",["Only parasitic","Only free-living","Free-living, epiphoretic, commensal or parasitic","Only found in humans"],2],
+["Which ciliate can parasitize humans?",["Balantidium coli","Trichodina","Ichthyophthirius multifiliis","Cryptocaryon"],0],
+["Balantidium coli is also called in some modern sources:",["Balantioides coli","Myxobolus coli","Taenia coli","Plasmodium coli"],0],
+["Which pair includes fish parasites listed in the notes?",["Ichthyophthirius multifiliis and Cryptocaryon","Nosema apis and Nosema bombycis","Taenia solium and Taenia saginata","Schistosoma haematobium and Paragonimus westermani"],0],
+["The attachment structures of Trichodina are described as:",["A ring of denticles","A coiled polar tube","Six hooks","A scolex"],0],
+["Which statement about Tetrahymena is supported by the notes?",["All species are human parasites.","Species may be free-living or opportunistic parasites.","It is a blood fluke.","It is the definitive host of malaria."],1],
+["The notes caution that Opalinata:",["Are not generally treated as typical ciliates in modern classification","Are all tapeworms","Have a scolex","Cause whirling disease"],0],
+["According to the notes, Cavalier-Smith placed Opalinata in which phylum in 1996?",["Bigyra","Cestoda","Apicomplexa","Nemertea"],0],
+["Why should the classification of Opalinata be checked with the lecturer?",["Protist classifications have changed over time.","Opalinata are not organisms.","They are always classified as mammals.","They have no nuclei."],0],
+["Rhizaria is described as a major:",["Eukaryotic supergroup","Class of tapeworms","Group of freshwater snails","Type of blood cell"],0],
+["In the mnemonic GRAF C2, “F” represents:",["Foraminifera","Filum","Flagellata","Flukes"],0],
+["Which of the following is included in the GRAF C2 mnemonic?",["Acanthareans","Cestodes","Myxozoa","Microsporidia"],0],
+["Paulinella chromatophora is given as an example of a:",["Cercozoan","Ciliate","Tapeworm","Fluke"],0],
+["Rhizarians may possess which types of pseudopodia?",["Filose or reticulose","Cercarial or miracidial","Scolex-like or proglottid-like","Macronuclear or micronuclear"],0],
+["“Filose” pseudopodia are described as:",["Thin and thread-like","Net-like","Six-hooked","Bladder-like"],0],
+["“Reticulose” pseudopodia are described as:",["Net-like","Thread-like","Ciliated","Coiled"],0],
+["Which of these is not listed as a member of the GRAF C2 mnemonic?",["Gromia","Radiolaria","Foraminifera","Balantidium"],3],
+["Which pair is correctly matched?",["Trichodina — ring of denticles","Nosema apis — fish-eye parasite","Balantidium coli — tapeworm","Paulinella chromatophora — blood fluke"],0],
+["Which structure is characteristic of ciliates in the notes?",["Macronucleus","Scolex","Rhynchocoel","Oncosphere"],0],
+["Which process is specifically associated with sexual genetic exchange in ciliates?",["Conjugation","Binary fission","Sporogony","Merogony"],0],
+["The term epiphoretic, as used in the notes, describes one possible:",["Association of ciliates with other organisms","Larval stage of tapeworms","Stage of malaria in mosquitoes","Type of pseudopodium"],0],
+["Which group includes Gromia, Radiolaria, Acanthareans and Foraminifera?",["Rhizaria","Ciliophora","Cestoda","Myxozoa"],0],
+["Which organism is identified as a human-parasitizing ciliate rather than a fish parasite?",["Balantidium coli","Cryptocaryon","Trichodina","Ichthyophthirius multifiliis"],0],
+["Which statement about ciliate reproduction is supported by the notes?",["Ciliates reproduce only sexually.","Ciliates reproduce only by binary fission.","Ciliates may reproduce asexually and undergo sexual processes.","Ciliates reproduce by producing cercariae."],2],
+["Which group is most directly associated with cilia in the supplied notes?",["Ciliophora","Rhizaria","Cestoda","Nemertea"],0],
+["Which classification detail is specifically identified as needing confirmation?",["The exact modern placement of Opalinata","The presence of cilia in ciliates","The existence of Balantidium coli","The use of denticles by Trichodina"],0]
+], pastQuestions: []
+},
+
+{
+  id: "Z11", code: "AEB", subject: "Zoology", chapNum: "11", title: "The Flukes", free: false,
+  notes: [
+  {
+    "type": "p",
+    "heading": "11.1 Schistosoma haematobium",
+    "paras": []
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "Schistosoma haematobium is a blood fluke associated mainly with urinary schistosomiasis, not a liver fluke."
+  },
+  {
+    "type": "list",
+    "heading": "Life cycle",
+    "ordered": true,
+    "items": [
+      "Eggs leave the human body in urine and reach freshwater.",
+      "The eggs hatch, releasing free-swimming miracidia.",
+      "Miracidia penetrate a suitable freshwater snail, the first intermediate host. For S. haematobium, this is typically a snail of the genus Bulinus.",
+      "Inside the snail, the parasite develops through the mother sporocyst and daughter sporocyst stages.",
+      "The snail releases free-swimming cercariae.",
+      "Cercariae penetrate human skin. After penetration, they are called schistosomula and migrate through the body before maturing."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "",
+    "paras": [
+      "Infective stage for the snail: miracidium. Infective stage for humans: cercaria."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "Pathology",
+    "paras": [
+      "Eggs trapped in tissues provoke an inflammatory response. In the liver, retained eggs may become surrounded by inflammatory cells, forming granulomas. In S. haematobium infection, eggs are especially associated with inflammation and damage in the urinary tract."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "The main pathology is caused by the host's inflammatory response to eggs trapped in tissues — not simply by adult worms."
+  },
+  {
+    "type": "p",
+    "heading": "11.2 Paragonimus westermani — Lung fluke",
+    "paras": [
+      "Paragonimus westermani is a lung fluke. Crabs and crayfish serve as the second intermediate hosts."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "Life cycle",
+    "ordered": true,
+    "items": [
+      "Eggs pass out of the host in sputum or are swallowed and passed in faeces.",
+      "In water, eggs develop and hatch, releasing miracidia.",
+      "Miracidia penetrate a suitable freshwater snail, the first intermediate host.",
+      "Inside the snail, the parasite develops through sporocyst and redia stages, producing cercariae.",
+      "Cercariae leave the snail and enter a crab or crayfish.",
+      "In the crustacean, cercariae encyst as metacercariae.",
+      "Humans become infected by eating raw or inadequately cooked infected crabs or crayfish.",
+      "Metacercariae excyst in the intestine. The young worms penetrate the intestinal wall and migrate through the body toward the lungs, where they mature."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "",
+    "paras": [
+      "Infective stage for humans: metacercaria. Usual site of adult worms: lungs. Extra-pulmonary paragonimiasis occurs when the parasite reaches other organs, such as the brain."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "Humans do not usually become infected by swallowing cercariae, and the parasite does not simply travel straight from the mouth to the lungs. It first excysts in the intestine and migrates through the body."
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "Your note says P. kellicotti is most common “in the north.” Please confirm what geographic region “the north” refers to in your course."
+  },
+  {
+    "type": "p",
+    "heading": "11.3 POSTCLIDI — Digenean parasites of fish",
+    "paras": [
+      "Your mnemonic POSTCLIDI appears to refer to these genera:"
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Posthodiplostomum: may infect cultured fish and affect organs such as the eyes and head.",
+      "Clinostomum: infection can cause visible lesions and reduce the market value of fish.",
+      "Diplostomum: some species infect fish eyes and can cause parasitic cataracts."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "The host description in your notes for Diplostomum needs verification. In the usual life cycle, snails and fish are intermediate hosts, while fish-eating birds are commonly definitive hosts. Humans are not generally listed as the usual definitive host."
+  }
+],
+  flashcards: [
+["What is Schistosoma haematobium, and what disease is it mainly associated with?","A blood fluke mainly associated with urinary schistosomiasis."],
+["What is the typical first intermediate host of S. haematobium?","A freshwater snail of the genus Bulinus."],
+["What is the infective stage of S. haematobium for the snail?","The miracidium."],
+["What is the infective stage of S. haematobium for humans?","The cercaria, which penetrates human skin."],
+["What is the cercaria called after it penetrates human skin?","A schistosomulum."],
+["Which developmental stages occur inside the snail in the S. haematobium life cycle?","Mother sporocyst and daughter sporocyst."],
+["How do S. haematobium eggs leave the human body, and what causes much of the tissue damage?","Eggs leave mainly in urine. Tissue damage is largely due to the host's inflammatory response to eggs trapped in tissues."],
+["What is Paragonimus westermani commonly called?","The lung fluke."],
+["What are the first and second intermediate hosts of P. westermani?","A freshwater snail is the first intermediate host; a crab or crayfish is the second."],
+["What is the infective stage of P. westermani for humans, and how do humans usually acquire it?","The metacercaria; humans usually acquire it by eating raw or inadequately cooked infected crabs or crayfish."],
+["Recall the main P. westermani life-cycle sequence after eggs reach water.","Eggs hatch into miracidia → enter a snail → develop through sporocyst and redia stages → cercariae leave the snail → enter a crab or crayfish → encyst as metacercariae."],
+["What happens after a human ingests P. westermani metacercariae?","They excyst in the intestine; young worms penetrate the intestinal wall and migrate toward the lungs, where they mature."],
+["What is extra-pulmonary paragonimiasis?","Infection in which the parasite reaches organs outside the lungs, such as the brain."],
+["What does the mnemonic POSTCLIDI appear to refer to in the notes?","The fish-digenean genera Posthodiplostomum, Clinostomum and Diplostomum."],
+["What fish-related effects are associated with these genera in the notes?","Posthodiplostomum may affect organs such as the eyes and head in cultured fish; Clinostomum may cause visible lesions and reduce market value; some Diplostomum species infect fish eyes and can cause parasitic cataracts."],
+["In the usual life cycle described for these fish digeneans, which hosts are intermediate and which are commonly definitive?","Snails and fish are intermediate hosts; fish-eating birds are commonly definitive hosts. Confirm the exact host associations expected in your course."],
+["What geographical detail about Paragonimus kellicotti should be checked?","The notes say “most common in the north,” but do not specify which geographical region “the north” means."]
+], mcqs: [
+["Schistosoma haematobium is primarily associated with:",["Lung disease","Urinary schistosomiasis","Hydatid cysts","Fish-eye cataracts"],1],
+["S. haematobium is a:",["Blood fluke","Lung fluke","Tapeworm","Ciliate"],0],
+["The first intermediate host of S. haematobium is typically a snail of the genus:",["Bulinus","Taenia","Anopheles","Echinococcus"],0],
+["The stage of S. haematobium that infects the snail is the:",["Cercaria","Miracidium","Schistosomulum","Metacercaria"],1],
+["The stage of S. haematobium that penetrates human skin is the:",["Egg","Miracidium","Cercaria","Redia"],2],
+["After penetrating human skin, the cercaria is called a:",["Schistosomulum","Sporocyst","Oncosphere","Ookinete"],0],
+["Inside the snail, S. haematobium develops through:",["Mother and daughter sporocysts","Redia and metacercaria","Cysticercus and cysticercoid","Gametocyte and ookinete"],0],
+["Eggs of S. haematobium leave the human body mainly in:",["Urine","Sputum only","Sweat","Saliva"],0],
+["The main tissue damage in schistosomiasis is caused largely by:",["The host's inflammatory response to eggs trapped in tissues","The adult worms eating red blood cells","The parasite's scolex attaching to the intestine","The polar tube entering host cells"],0],
+["Paragonimus westermani is commonly known as the:",["Lung fluke","Urinary blood fluke","Beef tapeworm","Jaw worm"],0],
+["The second intermediate hosts of P. westermani are:",["Crabs or crayfish","Cattle or pigs","Mosquitoes","Fish-eating birds"],0],
+["Humans usually become infected with P. westermani by eating:",["Raw or inadequately cooked infected crabs or crayfish","Contaminated beef","Freshwater snails","Infected mosquito gametocytes"],0],
+["The infective stage of P. westermani for humans is the:",["Miracidium","Cercaria","Metacercaria","Redia"],2],
+["In the snail, P. westermani develops through:",["Sporocyst and redia stages","Mother and daughter sporocysts only","Cysticercus and cysticercoid stages","Gametocyte and hypnozoite stages"],0],
+["After humans ingest infected crustaceans, metacercariae first excyst in the:",["Intestine","Liver","Urinary bladder","Salivary glands"],0],
+["After excysting, young P. westermani migrate toward the:",["Lungs","Kidneys only","Skin surface","Mosquito salivary glands"],0],
+["The usual site of adult P. westermani is the:",["Lungs","Urinary bladder","Red blood cells","Snail digestive gland"],0],
+["Paragonimiasis outside the lungs is described as:",["Extra-pulmonary paragonimiasis","Urinary schistosomiasis","Coccidiosis","Whirling disease"],0],
+["Which sequence correctly describes the S. haematobium stages relevant to transmission?",["Egg → miracidium → snail → cercaria → human","Egg → cercaria → crab → human","Egg → oncosphere → cattle → human","Egg → gametocyte → mosquito → human"],0],
+["Which statement about P. westermani infection is correct?",["Humans are infected by swallowing cercariae.","Humans are usually infected by eating infected crustaceans containing metacercariae.","Humans are infected by tick bites.","Humans are infected by skin penetration by miracidia."],1],
+["Which parasite is associated mainly with urinary tract pathology?",["Schistosoma haematobium","Paragonimus westermani","Taenia saginata","Myxobolus cerebralis"],0],
+["Which parasite is associated mainly with the lungs?",["Schistosoma haematobium","Paragonimus westermani","Balantidium coli","Eimeria"],1],
+["Which statement about S. haematobium eggs is supported by the notes?",["Eggs trapped in tissues can provoke granuloma formation.","Eggs develop into cysticerci in cattle.","Eggs are injected by ticks.","Eggs cause disease only by adult-worm feeding."],0],
+["In the P. westermani life cycle, the snail is the:",["First intermediate host","Second intermediate host","Definitive host","Accidental host only"],0],
+["In the P. westermani life cycle, the crab or crayfish is the:",["First intermediate host","Second intermediate host","Definitive host","Vector that injects sporozoites"],1],
+["Which group of stages is associated with P. westermani inside the snail?",["Sporocyst, redia and cercaria","Mother sporocyst, daughter sporocyst and schistosomulum","Oncosphere, cysticercus and scolex","Gametocyte, ookinete and oocyst"],0],
+["Which statement about Diplostomum is supported by the notes?",["Some species infect fish eyes and may cause parasitic cataracts.","It is the cause of urinary schistosomiasis.","It is a human tapeworm.","It is a microsporidian of honeybees."],0],
+["In the usual life cycle described for the fish digeneans, fish and snails are:",["Intermediate hosts","Always definitive hosts","Both vectors that inject sporozoites","Unrelated to the life cycle"],0],
+["Fish-eating birds are commonly described as the definitive hosts of:",["The fish digeneans listed in the notes","Taenia solium","Schistosoma haematobium","Nosema bombycis"],0],
+["Which item should be verified with the lecturer because the notes do not establish it clearly?",["The geographical meaning of “the north” for P. kellicotti","The human infective stage of S. haematobium","The second intermediate host of P. westermani","The usual adult site of P. westermani"],0]
+], pastQuestions: []
+},
+
+{
+  id: "Z12", code: "AEB", subject: "Zoology", chapNum: "12", title: "The Cestodes (Tapeworms)", free: false,
+  notes: [
+  {
+    "type": "list",
+    "heading": "12.1 General characteristics",
+    "ordered": false,
+    "items": [
+      "Cestodes are tapeworms.",
+      "They lack a mouth and digestive tract; nutrients are absorbed through the body surface.",
+      "Their bodies are not truly metamerically segmented. The repeated units are called proglottids.",
+      "The scolex is the attachment region at the anterior end.",
+      "In many tapeworms, the scolex is invaginated in the larval stage and everts during development."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "12.2 Important larval stages",
+    "ordered": false,
+    "items": [
+      "Oncosphere: the six-hooked embryo that typically infects the intermediate host.",
+      "Cysticercus: a bladder-like larval stage, as in Taenia solium.",
+      "Cysticercoid: a compact larval form found in some cestodes, often those using invertebrate intermediate hosts."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "The infective larval stage for the definitive host is not always a bladder worm or cysticercoid; it depends on the cestode species."
+  },
+  {
+    "type": "table",
+    "heading": "12.3 Important examples",
+    "headers": [
+      "Tapeworm",
+      "Important host or stage"
+    ],
+    "rows": [
+      [
+        "Taenia solium",
+        "Pig is the usual intermediate host; larval cyst is called Cysticercus cellulosae."
+      ],
+      [
+        "Taenia saginata",
+        "Cattle are the usual intermediate host; larval cyst is called Cysticercus bovis."
+      ]
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "Humans are the definitive host of both T. solium and T. saginata. Pigs and cattle are their usual intermediate hosts."
+  },
+  {
+    "type": "list",
+    "heading": "12.4 Coenurus and hydatid cysts",
+    "ordered": false,
+    "items": [
+      "Coenurus: a larval cyst containing multiple protoscolices.",
+      "Hydatid cyst: the larval cyst of Echinococcus; it can contain many protoscolices."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Correction",
+    "text": "A cyst with many protoscolices is not called “many scolex present” in every context; use the specific term coenurus or hydatid cyst, depending on the parasite."
+  }
+],
+  flashcards: [
+["What are cestodes commonly called, and how do they obtain nutrients?","Tapeworms; they lack a mouth and digestive tract and absorb nutrients through their body surface."],
+["What are the repeated body units of cestodes called?","Proglottids."],
+["Why should proglottids not be described as true metameric segmentation?","The repeated units are proglottids, but the body is not truly metamerically segmented."],
+["What is the scolex?","The anterior attachment region of a tapeworm."],
+["What is an oncosphere?","A six-hooked embryo that typically infects the intermediate host."],
+["Distinguish a cysticercus from a cysticercoid.","A cysticercus is a bladder-like larval stage; a cysticercoid is a compact larval form found in some cestodes, often those using invertebrate intermediate hosts."],
+["Is the infective larval stage for the definitive host always a cysticercus or cysticercoid?","No. It depends on the cestode species."],
+["What are the usual intermediate host and larval cyst of Taenia solium?","Pig; Cysticercus cellulosae."],
+["What are the usual intermediate host and larval cyst of Taenia saginata?","Cattle; Cysticercus bovis."],
+["What is the definitive host of T. solium and T. saginata?","Humans are the definitive host of both."],
+["What is a coenurus?","A larval cyst containing multiple protoscolices."],
+["What is a hydatid cyst?","The larval cyst of Echinococcus; it can contain many protoscolices."],
+["What may happen to the scolex during larval development?","In many tapeworms, it is invaginated in the larval stage and everts during development."],
+["Why is “a cyst with many protoscolices” not enough by itself to identify the cyst type?","The correct term depends on the parasite; coenurus and hydatid cyst are distinct terms."]
+], mcqs: [
+["Cestodes are commonly known as:",["Tapeworms","Ribbon worms","Jaw worms","Lung flukes"],0],
+["Cestodes lack a:",["Mouth and digestive tract","Body surface","Scolex","Reproductive system"],0],
+["Cestodes obtain nutrients mainly by:",["Absorption through the body surface","Eating through a mouth","Photosynthesis","Filtering food with cilia"],0],
+["The repeated body units of cestodes are called:",["Proglottids","Cercariae","Sporocysts","Denticles"],0],
+["The repeated units of a tapeworm should not be described as true:",["Metameric segmentation","Proglottids","Body units","Reproductive units"],0],
+["The scolex is the:",["Attachment region at the anterior end","Six-hooked embryo","Bladder-like larva","Egg-containing snail stage"],0],
+["The oncosphere is:",["A six-hooked embryo","A mature adult tapeworm","A lung fluke larva","A mosquito stage"],0],
+["The oncosphere typically infects the:",["Intermediate host","Definitive host only","Mosquito salivary gland","Human red blood cell"],0],
+["A cysticercus is described as a:",["Bladder-like larval stage","Thread-like pseudopodium","Motile mosquito stage","Fish parasite with denticles"],0],
+["A cysticercoid is generally described as:",["A compact larval form found in some cestodes","A human malaria gametocyte","A freshwater snail","A type of ciliate nucleus"],0],
+["The infective larval stage for the definitive host:",["Is always a cysticercus","Is always a cysticercoid","Depends on the cestode species","Is always a miracidium"],2],
+["The usual intermediate host of Taenia solium is the:",["Pig","Cow","Crab","Mosquito"],0],
+["The larval cyst of T. solium is called:",["Cysticercus cellulosae","Cysticercus bovis","Hydatid cyst","Triactinomyxon"],0],
+["The usual intermediate host of Taenia saginata is the:",["Pig","Cattle","Crab","Freshwater snail"],1],
+["The larval cyst of T. saginata is called:",["Cysticercus cellulosae","Cysticercus bovis","Coenurus","Hydatid cyst"],1],
+["Humans are the definitive host of:",["T. solium only","T. saginata only","Both T. solium and T. saginata","Neither species"],2],
+["Which pairing is correct?",["T. solium — cattle — Cysticercus bovis","T. saginata — pig — Cysticercus cellulosae","T. solium — pig — Cysticercus cellulosae","T. saginata — crab — hydatid cyst"],2],
+["A coenurus is a larval cyst containing:",["Multiple protoscolices","A single miracidium","A ring of denticles","A coiled polar tube"],0],
+["A hydatid cyst is the larval cyst of:",["Echinococcus","Taenia saginata only","Schistosoma haematobium","Paragonimus westermani"],0],
+["Hydatid cysts may contain:",["Many protoscolices","Only one red blood cell","A macronucleus and micronucleus","A triactinomyxon stage"],0],
+["Which term refers to the attachment region of a tapeworm?",["Scolex","Oncosphere","Proglottid","Cysticercoid"],0],
+["Which term refers to a tapeworm's repeated body units?",["Proglottids","Miracidia","Cercariae","Gametocytes"],0],
+["Which statement about cestode segmentation is correct according to the notes?",["Cestodes have true metameric segmentation.","Their repeated units are proglottids, not true metameric segments.","They have no repeated body units.","Their bodies consist of cilia-bearing rings."],1],
+["Which larval form is most directly associated with T. solium in the notes?",["Cysticercus","Metacercaria","Schistosomulum","Ookinete"],0],
+["Which larval form is associated with some cestodes that use invertebrate intermediate hosts?",["Cysticercoid","Cercaria","Miracidium","Hypnozoite"],0],
+["Which statement about a scolex in the larval stage is supported by the notes?",["It may be invaginated and later evert during development.","It always becomes a mosquito.","It is the six-hooked embryo.","It is a type of pseudopodium."],0],
+["Which pair is correctly matched?",["Oncosphere — six-hooked embryo","Scolex — repeated body unit","Proglottid — attachment region","Cysticercus — mosquito stage"],0],
+["Which structure is associated with nutrient uptake in cestodes?",["Body surface","Mouth","Complete digestive tract","Cilia"],0],
+["Which statement about cysts containing many protoscolices is correct?",["They are all called coenurus.","They are all called hydatid cysts.","The correct term depends on the parasite.","They are always cysticercoids."],2],
+["Which distinction is important when identifying larval cestode forms?",["Cysticercus and cysticercoid are different larval forms.","Cysticercus and cercaria are the same stage.","Oncosphere and scolex are synonyms.","Proglottid and hydatid cyst are synonyms."],0]
+], pastQuestions: []
+},
+
+{
+  id: "Z13", code: "AEB", subject: "Zoology", chapNum: "13", title: "Rhynchocoela and Gnathostomulida", free: false,
+  notes: [
+  {
+    "type": "p",
+    "heading": "13.1 General characteristics — Rhynchocoela",
+    "paras": [
+      "Rhynchocoela, also called Nemertea or ribbon worms, are aquatic predators. They use an eversible proboscis housed in a cavity called the rhynchocoel."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "The name is derived from Greek roots referring to a snout or beak and a hollow.",
+      "They are generally elongated, soft-bodied worms.",
+      "They occur in marine environments, including temperate seas.",
+      "They respire mainly through the body surface (cutaneous respiration).",
+      "They possess a complete digestive tract, with a mouth and anus.",
+      "They have a blood-vascular system."
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "The number of species and the claim that they are “the longest animals on Earth” may depend on the source and on how length is measured. The bootlace worm, Lineus longissimus, is famously reported to reach exceptional lengths, but avoid treating a record length as typical of the group."
+  },
+  {
+    "type": "list",
+    "heading": "13.2 Larval form",
+    "ordered": false,
+    "items": [
+      "Pilidium larva: a larval form found in some marine ribbon worms."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "Gnathostomulida — Jaw Worms",
+    "paras": [
+      "Gnathostomulids are small, worm-like animals commonly called jaw worms."
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "13.3 General characteristics",
+    "ordered": false,
+    "items": [
+      "They lack an anus; the digestive tract has a single opening.",
+      "They are hermaphroditic.",
+      "Their cilia differ from those of multiciliated turbellarians: gnathostomulids typically have a single cilium per epidermal cell.",
+      "Your notes list approximately 100 species."
+    ]
+  },
+  {
+    "type": "p",
+    "heading": "13.4 Orders",
+    "paras": [
+      "Your notes give the mnemonic BURST FILO, but only list:"
+    ]
+  },
+  {
+    "type": "list",
+    "heading": "",
+    "ordered": false,
+    "items": [
+      "Bursovaginoidea",
+      "Filospermoidea"
+    ]
+  },
+  {
+    "type": "correction",
+    "heading": "Check with lecturer",
+    "text": "Please confirm the full order names and the intended expansion of the mnemonic. The supplied notes do not give enough information to reconstruct the remaining details reliably."
+  }
+],
+  flashcards: [
+["What are Rhynchocoela also called?","Nemertea or ribbon worms."],
+["What is the feeding structure of ribbon worms, and where is it housed?","An eversible proboscis housed in a cavity called the rhynchocoel."],
+["What is the usual lifestyle and habitat described for Nemertea?","They are aquatic predators, commonly found in marine environments, including temperate seas."],
+["How do Nemertea respire, and what type of digestive tract do they possess?","Mainly through the body surface by cutaneous respiration; they have a complete digestive tract with a mouth and anus."],
+["What circulatory feature is listed for Nemertea?","They have a blood-vascular system."],
+["What is the pilidium larva?","A larval form found in some marine ribbon worms."],
+["Why should the claim that ribbon worms are “the longest animals on Earth” be treated cautiously?","Lineus longissimus is reported to reach exceptional lengths, but a record length should not be treated as typical of the whole group."],
+["What are Gnathostomulida commonly called?","Jaw worms."],
+["What are the digestive and reproductive features of Gnathostomulida listed in the notes?","They lack an anus, have a digestive tract with a single opening, and are hermaphroditic."],
+["What ciliary feature distinguishes Gnathostomulida in the notes?","They typically have a single cilium per epidermal cell, unlike multiciliated turbellarians."],
+["What approximate number of Gnathostomulida species is given in the notes?","Approximately 100 species."],
+["Which two Gnathostomulida order names are explicitly listed, and what remains uncertain?","Bursovaginoidea and Filospermoidea are listed. The complete order list and full expansion of BURST FILO need confirmation from the lecturer or textbook."]
+], mcqs: [
+["Rhynchocoela are also known as:",["Nemertea or ribbon worms","Tapeworms","Jaw flukes","Ciliates"],0],
+["Rhynchocoela are generally described as:",["Aquatic predators","Photosynthetic plants","Blood parasites of humans","Insects"],0],
+["The feeding structure used by ribbon worms is an:",["Eversible proboscis","Invaginated scolex","Apical complex","Polar tube"],0],
+["The proboscis of a ribbon worm is housed in a cavity called the:",["Rhynchocoel","Coelom of a tapeworm","Oocyst","Sporocyst"],0],
+["Ribbon worms respire mainly through the:",["Body surface","Lungs","Gills in every species","Polar capsules"],0],
+["Respiration through the body surface is called:",["Cutaneous respiration","Sporogony","Conjugation","Merogony"],0],
+["Which digestive-system feature is listed for Nemertea?",["Complete digestive tract with mouth and anus","No digestive tract","Digestive tract with one opening only","No mouth or anus"],0],
+["Nemertea possess a:",["Blood-vascular system","Scolex","Macronucleus and micronucleus","Polar tube"],0],
+["The pilidium is a larval form found in:",["Some marine ribbon worms","All tapeworms","All ciliates","All malaria parasites"],0],
+["The name “Rhynchocoela” refers to roots associated with:",["A snout or beak and a hollow","A six-hooked embryo","A coiled polar tube","A segmented body"],0],
+["Which statement about Lineus longissimus is supported by the notes?",["It is famously reported to reach exceptional lengths.","It is the usual size of all ribbon worms.","It is a tapeworm larva.","It is a malaria parasite."],0],
+["Why should the claim that ribbon worms are “the longest animals on Earth” be treated cautiously?",["Exceptional reported lengths should not be treated as typical of the group.","Ribbon worms are microscopic ciliates.","No ribbon worm has ever been measured.","All ribbon worms are shorter than insects."],0],
+["Gnathostomulida are commonly called:",["Jaw worms","Ribbon worms","Lung flukes","Tapeworms"],0],
+["Gnathostomulids are described as:",["Small, worm-like animals","Large marine mammals","Unicellular algae","Mosquito larvae"],0],
+["Gnathostomulids lack:",["An anus","A mouth","A digestive tract","Cilia"],0],
+["The digestive tract of Gnathostomulida has:",["A single opening","Two separate openings","No opening","Three openings"],0],
+["Gnathostomulids are described as:",["Hermaphroditic","Exclusively male","Exclusively female","Asexual in every species"],0],
+["Gnathostomulids typically have how many cilia per epidermal cell, according to the notes?",["One","Two","Many","None"],0],
+["The ciliary feature described for Gnathostomulida contrasts with:",["Multiciliated turbellarians","Tapeworm proglottids","Malaria gametocytes","Fluke cercariae"],0],
+["Approximately how many Gnathostomulida species are listed in the notes?",["10","100","1,000","10,000"],1],
+["Which two order names are explicitly listed in the supplied notes?",["Bursovaginoidea and Filospermoidea","Ciliophora and Rhizaria","Myxozoa and Acetospora","Taenia and Echinococcus"],0],
+["The mnemonic given for Gnathostomulida orders is:",["BURST FILO","GRAF C2","MAMA","CAMP"],0],
+["Why should the full expansion of BURST FILO be confirmed?",["The supplied notes list only two order names.","The mnemonic refers to malaria fever.","It is a mnemonic for tapeworm larval stages.","The notes provide every order in full."],0],
+["Which structure is characteristic of Nemertea rather than Gnathostomulida in the notes?",["Eversible proboscis housed in a rhynchocoel","Single opening to the digestive tract","One cilium per epidermal cell","Hermaphroditism"],0],
+["Which feature is shared by both groups as described in the notes?",["Worm-like body form","Scolex","Polar tube","Macronucleus and micronucleus"],0],
+["Which statement correctly distinguishes the digestive systems of the two groups?",["Nemertea have a complete tract; Gnathostomulida lack an anus.","Both groups lack a digestive tract.","Gnathostomulida have a complete tract; Nemertea lack an anus.","Both groups have no digestive openings."],0],
+["Which group is specifically described as occurring in marine environments, including temperate seas?",["Nemertea","Cestoda","Microsporidia","Apicomplexa"],0],
+["Which feature of Nemertea is associated with prey capture?",["Eversible proboscis","Scolex","Ring of denticles","Coiled polar tube"],0],
+["Which term names the cavity that houses the ribbon worm's proboscis?",["Rhynchocoel","Macronucleus","Hydatid cyst","Oncosphere"],0],
+["Which detail is explicitly marked for confirmation in the supplied notes?",["The complete list of Gnathostomulida orders","The existence of the Nemertea proboscis","The presence of a mouth and anus in Nemertea","The name of the pilidium larva"],0]
+], pastQuestions: []
+}
+];
+
+// ---------- state ----------
+let unlocked = false;
+try { unlocked = localStorage.getItem('examprep_unlocked') === 'true'; } catch(e) {}
+let currentChapterIdx = 0;
+let cardIndex = 0, cardFlipped = false;
+let quizIndex = 0, quizScore = 0, quizAnswered = 0;
+
+function currentChapter() { return CHAPTERS[currentChapterIdx]; }
+function chapterAccessible(ch) { return ch.free || unlocked; }
+
+// ---------- chapter rail ----------
+function renderChapterRail() {
+  const rail = document.getElementById('chapter-rail');
+  rail.innerHTML = CHAPTERS.map((ch, i) => {
+    const locked = !chapterAccessible(ch);
+    return `<button class="chip ${i === currentChapterIdx ? 'active' : ''}" data-idx="${i}">${locked ? '<span class="lock-dot">&#128274;</span> ' : ''}${ch.code} ${ch.chapNum}</button>`;
+  }).join('');
+  rail.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentChapterIdx = parseInt(btn.dataset.idx);
+      cardIndex = 0; cardFlipped = false; quizIndex = 0; quizScore = 0; quizAnswered = 0;
+      renderAll();
+    });
+  });
+}
+
+// ---------- header ----------
+function renderHeader() {
+  const ch = currentChapter();
+  document.getElementById('chapter-eyebrow').textContent = `${ch.subject} \u00b7 Chapter ${ch.chapNum}`;
+  document.getElementById('chapter-title').textContent = ch.title;
+}
+
+// ---------- notes ----------
+function renderNoteBlock(block) {
+  if (block.type === 'p') {
+    return `<div class="note-block">${block.heading ? `<h2>${block.heading}</h2>` : ''}${(block.paras||[]).map(p => `<p>${p}</p>`).join('')}</div>`;
+  }
+  if (block.type === 'list') {
+    const tag = block.ordered ? 'ol' : 'ul';
+    return `<div class="note-block">${block.heading ? `<h2>${block.heading}</h2>` : ''}<${tag}>${block.items.map(i => `<li>${i}</li>`).join('')}</${tag}></div>`;
+  }
+  if (block.type === 'table') {
+    return `<div class="note-block">${block.heading ? `<h2>${block.heading}</h2>` : ''}<div class="table-wrap"><table class="note-table"><thead><tr>${block.headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${block.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+  }
+  if (block.type === 'correction') {
+    return `<div class="correction"><strong>${block.heading}:</strong> ${block.text}</div>`;
+  }
+  if (block.type === 'checklist') {
+    return `<div class="note-block"><h2>${block.heading}</h2>
+      <p class="checklist-progress" id="checklist-progress">0/${block.items.length} reviewed</p>
+      ${block.items.map((it, i) => `
+        <label class="checklist-item" id="check-item-${i}">
+          <input type="checkbox" data-i="${i}">
+          <span>${it}</span>
+        </label>`).join('')}
+    </div>`;
+  }
+  return '';
+}
+
+function renderNotes() {
+  const ch = currentChapter();
+  const el = document.getElementById('panel-notes');
+  if (!chapterAccessible(ch)) {
+    el.innerHTML = lockBoxHTML('notes');
+    attachUnlockHandlers();
+    return;
+  }
+  el.innerHTML = ch.notes.map(renderNoteBlock).join('');
+  const checkboxes = el.querySelectorAll('.checklist-item input');
+  if (checkboxes.length) {
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const item = document.getElementById(`check-item-${cb.dataset.i}`);
+        item.classList.toggle('checked', cb.checked);
+        const total = checkboxes.length;
+        const done = el.querySelectorAll('.checklist-item input:checked').length;
+        document.getElementById('checklist-progress').textContent = `${done}/${total} reviewed`;
+      });
+    });
+  }
+}
+
+// ---------- flashcards ----------
+function renderFlashcard() {
+  const ch = currentChapter();
+  const wrap = document.getElementById('cards-inner');
+  if (!chapterAccessible(ch)) { wrap.innerHTML = lockBoxHTML('cards'); attachUnlockHandlers(); return; }
+  if (!ch.flashcards.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="icon">&#128218;</div><p>Flashcards for this chapter are coming soon.</p></div>`;
+    return;
+  }
+  const [q, a] = ch.flashcards[cardIndex];
+  wrap.innerHTML = `
+    <div class="progress-row">
+      <span>Card ${cardIndex + 1} of ${ch.flashcards.length}</span>
+      <span>${cardFlipped ? 'Tap to see question' : 'Tap to reveal answer'}</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${(cardIndex + 1) / ch.flashcards.length * 100}%"></div></div>
+    <div class="flashcard ${cardFlipped ? 'answer' : ''}" id="flip-card">
+      <div class="content">${cardFlipped ? a : q}<span class="hint">${cardFlipped ? '(Answer)' : '(Question \u2014 tap card)'}</span></div>
+    </div>
+    <div class="card-nav">
+      <button id="card-prev" ${cardIndex === 0 ? 'disabled' : ''}>Previous</button>
+      <button id="card-next" ${cardIndex === ch.flashcards.length - 1 ? 'disabled' : ''}>Next</button>
+    </div>`;
+  document.getElementById('flip-card').addEventListener('click', () => { cardFlipped = !cardFlipped; renderFlashcard(); });
+  document.getElementById('card-prev').addEventListener('click', () => { if (cardIndex > 0) { cardIndex--; cardFlipped = false; renderFlashcard(); } });
+  document.getElementById('card-next').addEventListener('click', () => { if (cardIndex < ch.flashcards.length - 1) { cardIndex++; cardFlipped = false; renderFlashcard(); } });
+}
+
+// ---------- combined practice pool ----------
+function combinedQuizPool() {
+  const pool = [];
+  CHAPTERS.forEach(ch => {
+    if (!chapterAccessible(ch)) return;
+    ch.mcqs.forEach(mcq => pool.push({ chapterLabel: `${ch.subject} \u00b7 Ch ${ch.chapNum}`, q: mcq[0], options: mcq[1], correctIdx: mcq[2] }));
+  });
+  return pool;
+}
+function totalMcqCountAll() {
+  return CHAPTERS.reduce((sum, ch) => sum + ch.mcqs.length, 0);
+}
+
+// ---------- quiz (combined across chapters) ----------
+function renderQuiz() {
+  const wrap = document.getElementById('quiz-inner');
+  const pool = combinedQuizPool();
+  if (!pool.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="icon">&#10067;</div><p>No quiz questions available yet.</p></div>`;
+    return;
+  }
+  if (quizIndex >= pool.length) quizIndex = 0;
+  const item = pool[quizIndex];
+  const teaser = (!unlocked && totalMcqCountAll() > pool.length)
+    ? `<div style="margin-top:18px">${lockBoxHTML('quiz')}</div>` : '';
+  wrap.innerHTML = `
+    <div class="progress-row">
+      <span>Question ${quizIndex + 1} of ${pool.length}</span>
+      <span class="quiz-score">Score: ${quizScore}/${quizAnswered}</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${(quizIndex + 1) / pool.length * 100}%"></div></div>
+    <span class="qtag">${item.chapterLabel}</span>
+    <p class="quiz-question">${item.q}</p>
+    <div id="options-wrap">${item.options.map((opt, i) => `<button class="option" data-i="${i}">${opt}</button>`).join('')}</div>
+    <div class="quiz-footer"><button class="next-btn" id="quiz-next" disabled>Next question</button></div>
+    ${teaser}`;
+
+  const optionBtns = wrap.querySelectorAll('.option');
+  optionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      optionBtns.forEach(b => b.disabled = true);
+      const chosen = parseInt(btn.dataset.i);
+      if (chosen === item.correctIdx) { btn.classList.add('correct'); quizScore++; }
+      else { btn.classList.add('wrong'); optionBtns[item.correctIdx].classList.add('correct'); }
+      quizAnswered++;
+      wrap.querySelector('.quiz-score').textContent = `Score: ${quizScore}/${quizAnswered}`;
+      document.getElementById('quiz-next').disabled = false;
+    });
+  });
+  document.getElementById('quiz-next').addEventListener('click', () => {
+    if (quizIndex < pool.length - 1) { quizIndex++; renderQuiz(); }
+  });
+  attachUnlockHandlers();
+}
+
+// ---------- past questions (combined across chapters) ----------
+function renderPast() {
+  const wrap = document.getElementById('past-inner');
+  const items = [];
+  CHAPTERS.forEach(ch => {
+    if (!chapterAccessible(ch)) return;
+    ch.pastQuestions.forEach(pq => items.push({ chapterLabel: `${ch.subject} \u00b7 Ch ${ch.chapNum}`, ...pq }));
+  });
+  const teaser = !unlocked ? lockBoxHTML('past') : '';
+  if (!items.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="icon">&#128196;</div><p>No past questions added yet.</p></div>${teaser}`;
+    attachUnlockHandlers();
+    return;
+  }
+  wrap.innerHTML = items.map(pq => `<div class="note-block"><span class="qtag">${pq.chapterLabel} \u00b7 ${pq.year}</span><p><strong>Q:</strong> ${pq.q}</p><p>${pq.a}</p></div>`).join('') + teaser;
+  attachUnlockHandlers();
+}
+
+// ---------- Chimene MCQs (empty placeholder, filled later) ----------
+function renderChimene() {
+  const wrap = document.getElementById('chimene-inner');
+  wrap.innerHTML = `<div class="empty-state"><div class="icon">&#128221;</div><p>MCQs prepared by Chimene \u2014 coming soon.</p></div>`;
+}
+
+// ---------- paywall ----------
+function lockBoxHTML(context) {
+  return `
+    <div class="lock-box">
+      <div class="icon">&#128274;</div>
+      <h3>A &#8358;200 token is required</h3>
+      <p>This chapter is part of the full pack. Pay once below, then enter the code your admin sends you to unlock every chapter.</p>
+      <a class="pay-btn" href="${PAYSTACK_LINK}" target="_blank" rel="noopener">Pay &#8358;200 to continue</a>
+      <div class="unlock-row">
+        <input type="text" id="unlock-input-${context}" placeholder="Enter unlock code">
+        <button id="unlock-btn-${context}">Unlock</button>
+      </div>
+      <p class="unlock-msg" id="unlock-msg-${context}"></p>
+    </div>`;
+}
+function attachUnlockHandlers() {
+  ['notes','cards','quiz','past'].forEach(context => {
+    const btn = document.getElementById(`unlock-btn-${context}`);
+    if (!btn) return;
+    btn.addEventListener('click', () => tryUnlock(context));
+    document.getElementById(`unlock-input-${context}`).addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(context); });
+  });
+}
+function tryUnlock(context) {
+  const input = document.getElementById(`unlock-input-${context}`);
+  const msg = document.getElementById(`unlock-msg-${context}`);
+  const val = (input.value || '').trim();
+  if (val.toUpperCase() === UNLOCK_CODE.toUpperCase()) {
+    unlocked = true;
+    try { localStorage.setItem('examprep_unlocked', 'true'); } catch(e) {}
+    msg.textContent = 'Unlocked \u2014 enjoy full access.';
+    msg.className = 'unlock-msg ok';
+    setTimeout(() => { renderChapterRail(); renderAll(); }, 400);
+  } else {
+    msg.textContent = 'That code did not match. Check and try again.';
+    msg.className = 'unlock-msg err';
+  }
+}
+
+// ---------- tabs ----------
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(`panel-${btn.dataset.tab}`).classList.add('active');
+  });
+});
+
+// ---------- practice subtabs ----------
+document.querySelectorAll('.subtab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(`subpanel-${btn.dataset.subtab}`).classList.add('active');
+  });
+});
+
+// ---------- init ----------
+function renderAll() {
+  renderHeader();
+  renderNotes();
+  renderFlashcard();
+  renderQuiz();
+  renderPast();
+  renderChimene();
+}
+renderChapterRail();
+renderAll();
+</script>
+</body>
+</html>
